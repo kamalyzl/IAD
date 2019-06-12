@@ -1,0 +1,33 @@
+package clase;
+
+public class Paciente {
+	
+	//  Atributos privados
+	private int Tcama,almacen;
+	private char enuso;
+	//  Constructor
+    public Paciente(int tc, int alm, char eu) {
+    	this.Tcama=tc;
+        this.almacen = alm;
+        this.enuso = eu;
+        
+    }
+	public int getTcama() {
+		return Tcama;
+	}
+	public void setTcama(int tcama) {
+		Tcama = tcama;
+	}
+	public int getAlmacen() {
+		return almacen;
+	}
+	public void setAlmacen(int almacen) {
+		this.almacen = almacen;
+	}
+	public char getEnuso() {
+		return enuso;
+	}
+	public void setEnuso(char enuso) {
+		this.enuso = enuso;
+	}
+}

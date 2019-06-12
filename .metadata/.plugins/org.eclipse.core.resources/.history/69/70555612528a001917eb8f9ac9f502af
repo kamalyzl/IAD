@@ -1,0 +1,143 @@
+package guis;
+
+import java.awt.EventQueue;
+import javax.swing.JTable;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class DlgAdiCam extends JDialog implements ActionListener {
+	private JButton btnIngresar;
+	private JButton btnModificar;
+	private JButton btnEliminar;
+	private JButton btnSalir;
+	private JScrollPane scrollPane;
+	
+	//es dato estatico la tabla
+	private static DefaultTableModel modelo;
+	
+	private JTable tbladicam;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgAdiCam dialog = new DlgAdiCam();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgAdiCam() {
+		setFont(new Font("Georgia", Font.BOLD, 12));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgAdiCam.class.getResource("/img/TriCell.jpg")));
+		setTitle("Adicionar Cama - Clinica Bautista");
+		getContentPane().setBackground(Color.WHITE);
+		setForeground(Color.LIGHT_GRAY);
+		setBounds(100, 100, 550, 320);
+		getContentPane().setLayout(null);
+		
+		btnIngresar = new JButton("Ingresar");
+		btnIngresar.addActionListener(this);
+		btnIngresar.setBounds(145, 11, 89, 23);
+		getContentPane().add(btnIngresar);
+		
+		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(this);
+		btnModificar.setBounds(236, 11, 89, 23);
+		getContentPane().add(btnModificar);
+		
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(this);
+		btnEliminar.setBounds(327, 11, 89, 23);
+		getContentPane().add(btnEliminar);
+		
+		btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(this);
+		btnSalir.setBounds(417, 11, 89, 23);
+		getContentPane().add(btnSalir);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 45, 496, 205);
+		getContentPane().add(scrollPane);
+		
+		tbladicam = new JTable();
+		tbladicam.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		tbladicam.setFillsViewportHeight(true);
+		scrollPane.setViewportView(tbladicam);
+		
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Número de Cama:");
+		modelo.addColumn("Categoría:");
+		modelo.addColumn("Precio por día:");
+		modelo.addColumn("Estado:");
+		tbladicam.setModel(modelo);
+		listar();
+	}
+	
+	public static void listar(){
+		modelo.setRowCount(0);
+		for(int i=0;i<Proyecto.ac.tamaño();i++)
+		{
+			Object fila[]={Proyecto.ac.obtener(i).getNcama(),
+					Proyecto.ac.obtener(i).detalleCategoria(),
+					Proyecto.ac.obtener(i).getPrecio(),
+					Proyecto.ac.obtener(i).detalleEstado()};
+			modelo.addRow(fila);
+		};
+	
+}	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnEliminar) {
+			actionPerformedBtnEliminar(arg0);
+		}
+		if (arg0.getSource() == btnModificar) {
+			actionPerformedBtnModificar(arg0);
+		}
+		if (arg0.getSource() == btnSalir) {
+			actionPerformedBtnSalir(arg0);
+		}
+		if (arg0.getSource() == btnIngresar) {
+			actionPerformedBtnIngresar(arg0);
+		}
+	}
+	protected void actionPerformedBtnIngresar(ActionEvent arg0) {
+		DlgIngreso_Cama MnGlobal = new DlgIngreso_Cama();
+		
+		MnGlobal.setLocationRelativeTo(this);
+		MnGlobal.setVisible(true);
+	}
+	protected void actionPerformedBtnSalir(ActionEvent arg0) {
+		dispose();
+	}
+	protected void actionPerformedBtnModificar(ActionEvent arg0) {
+		DlgModCam MnGlobal = new DlgModCam();
+		MnGlobal.setLocationRelativeTo(this);
+		MnGlobal.setVisible(true);
+		
+	}
+	protected void actionPerformedBtnEliminar(ActionEvent arg0) {
+		Proyecto.ac.eliminar(Proyecto.ac.tamaño()-1);
+		listar();
+	}
+	}
+

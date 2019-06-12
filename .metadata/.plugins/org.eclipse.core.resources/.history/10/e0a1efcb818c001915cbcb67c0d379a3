@@ -1,0 +1,419 @@
+package guis;
+
+import java.awt.EventQueue;
+import javax.swing.JTable;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import clase.Cama;
+import libreria.Alerta;
+import libreria.lib;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.UIManager;
+import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+
+public class DlgCama extends JDialog implements ActionListener, MouseListener {
+	private JButton btnIngresar;
+	private JButton btnModificar;
+	private JButton btnEliminar;
+	private JButton btnCerrar;
+	private JScrollPane scrollPane;
+
+	private static DefaultTableModel modelo;
+
+	private JTable tableCama;
+	private JTextField txtBuscarCama;
+	private JLabel lblCama;
+	private JLabel lblCategora;
+	private JComboBox<?> cbxCategoria;
+	private JLabel lblPrecioS;
+	private JTextField txtPrecio;
+	private JLabel lblEstado;
+	private JComboBox<?> cbxEstado;
+	private JButton btnGuardar;
+	private JButton btnBuscar;
+	private JLabel lblNroCama;
+	private JTextField txtCama;
+	private JButton btnVerTodoslistar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgCama dialog = new DlgCama();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+					dialog.setLocationRelativeTo(null);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+//Numero de cama
+	/**
+	 * Create the dialog.
+	 */
+	public DlgCama() {
+		setFont(new Font("Georgia", Font.BOLD, 12));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgCama.class.getResource("/img/TriCell.jpg")));
+		setTitle(" Cama - Clinica Bautista");
+		getContentPane().setBackground(Color.WHITE);
+		setForeground(Color.LIGHT_GRAY);
+		setBounds(300, 100, 600, 700);
+		getContentPane().setLayout(null);
+
+		btnIngresar = new JButton("+ A\u00F1adir");
+		btnIngresar.addActionListener(this);
+		btnIngresar.setBounds(272, 36, 106, 25);
+		getContentPane().add(btnIngresar);
+
+		btnModificar = new JButton("Modificar");
+		btnModificar.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\modificar.png"));
+		btnModificar.addActionListener(this);
+		btnModificar.setBounds(104, 600, 131, 40);
+		getContentPane().add(btnModificar);
+
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\eliminar.png"));
+		btnEliminar.addActionListener(this);
+		btnEliminar.setBounds(272, 600, 131, 40);
+		getContentPane().add(btnEliminar);
+
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\logout.jpg"));
+		btnCerrar.addActionListener(this);
+		btnCerrar.setBounds(445, 600, 116, 40);
+		getContentPane().add(btnCerrar);
+
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 322, 549, 248);
+		getContentPane().add(scrollPane);
+		
+				tableCama = new JTable();
+				scrollPane.setViewportView(tableCama);
+				tableCama.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				tableCama.setFillsViewportHeight(true);
+				tableCama.addMouseListener(this);
+				tableCama.setModel(modelo);
+
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Número de Cama:");
+		modelo.addColumn("Categoría:");
+		modelo.addColumn("Precio por día:");
+		modelo.addColumn("Estado:");
+
+		txtBuscarCama = new JTextField();
+		txtBuscarCama.setBounds(133, 194, 106, 20);
+		getContentPane().add(txtBuscarCama);
+		txtBuscarCama.setColumns(10);
+
+		lblCama = new JLabel("Buscar por Nro de Cama:");
+		lblCama.setBounds(12, 194, 140, 16);
+		getContentPane().add(lblCama);
+
+		lblCategora = new JLabel("Categor\u00EDa:");
+		lblCategora.setBounds(37, 126, 55, 16);
+		getContentPane().add(lblCategora);
+
+		cbxCategoria = new JComboBox();
+		cbxCategoria.setEnabled(false);
+		cbxCategoria.setModel(new DefaultComboBoxModel(new String[] { "B\u00E1sico", "Est\u00E1ndar", "Premium" }));
+		cbxCategoria.setBounds(123, 124, 116, 20);
+		getContentPane().add(cbxCategoria);
+
+		lblPrecioS = new JLabel("Precio S/.:");
+		lblPrecioS.setBounds(38, 84, 56, 16);
+		getContentPane().add(lblPrecioS);
+
+		txtPrecio = new JTextField();
+		txtPrecio.setEditable(false);
+		txtPrecio.setBounds(123, 81, 116, 20);
+		getContentPane().add(txtPrecio);
+		txtPrecio.setColumns(10);
+
+		lblEstado = new JLabel("Estado:");
+		lblEstado.setBounds(37, 167, 38, 16);
+		getContentPane().add(lblEstado);
+
+		cbxEstado = new JComboBox();
+		cbxEstado.setEnabled(false);
+		cbxEstado.setModel(new DefaultComboBoxModel(new String[] { "Libre", "Ocupado" }));
+		cbxEstado.setBounds(123, 165, 116, 20);
+		getContentPane().add(cbxEstado);
+
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\grabar.png"));
+		btnGuardar.addActionListener(this);
+		btnGuardar.setBounds(272, 80, 106, 25);
+		getContentPane().add(btnGuardar);
+
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\consulta.png"));
+		btnBuscar.addActionListener(this);
+		btnBuscar.setBounds(12, 221, 97, 25);
+		getContentPane().add(btnBuscar);
+
+		lblNroCama = new JLabel("Nro Cama:");
+		lblNroCama.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNroCama.setBounds(32, 40, 62, 16);
+		getContentPane().add(lblNroCama);
+
+		txtCama = new JTextField();
+		txtCama.setEditable(false);
+		txtCama.setBounds(123, 37, 116, 22);
+		getContentPane().add(txtCama);
+		txtCama.setColumns(10);
+
+		btnVerTodoslistar = new JButton("Ver todo/Listar");
+		btnVerTodoslistar.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\registrar.png"));
+		btnVerTodoslistar.addActionListener(this);
+		btnVerTodoslistar.setBounds(111, 221, 144, 25);
+		getContentPane().add(btnVerTodoslistar);
+		listar();
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnBuscar) {
+			actionPerformedBtnBuscar(arg0);
+		}
+		if (arg0.getSource() == btnVerTodoslistar) {
+			actionPerformedBtnVerTodoslistar(arg0);
+		}
+		if (arg0.getSource() == btnGuardar) {
+			actionPerformedBtnGuardar(arg0);
+		}
+		if (arg0.getSource() == btnEliminar) {
+			actionPerformedBtnEliminar(arg0);
+		}
+		if (arg0.getSource() == btnModificar) {
+			actionPerformedBtnModificar(arg0);
+		}
+		if (arg0.getSource() == btnCerrar) {
+			actionPerformedBtnSalir(arg0);
+		}
+		if (arg0.getSource() == btnIngresar) {
+			actionPerformedBtnIngresar(arg0);
+		}
+	}
+
+	protected void actionPerformedBtnIngresar(ActionEvent arg0) {
+		habilitarEntradas();
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		if (e.getSource() == tableCama) {
+			mouseClickedTable(e);
+		}
+	}
+
+	protected void mouseClickedTable(MouseEvent e) {
+
+		editarFila();
+	}
+
+	protected void actionPerformedBtnSalir(ActionEvent arg0) {
+		dispose();
+	}
+
+	protected void actionPerformedBtnModificar(ActionEvent arg0) {
+		if (txtCama.getText().trim().length() < 1) {
+			mensaje("Debe seleccionar un registro para poder eliminarlo");
+		} else {
+			habilitarEntradas();
+		}
+
+	}
+
+	protected void actionPerformedBtnEliminar(ActionEvent arg0) { 
+		
+		// consultar al profesor si remove(x) recibe indice o valor
+		try {
+			int numCama = leerNumCama();
+			Cama a = Proyecto.ac.buscar(numCama);
+			if (a == null)
+				Alerta.mensaje(this, "No existen clientes");
+			else {
+				int ok = Alerta.confirmar(this, "¿ Desea eliminar el registro ?");
+				if (ok == 0) {
+					Proyecto.ac.eliminar(a);
+					listar();
+				}
+			}
+
+		} catch (Exception e1) {
+			mensaje("Debe seleccionar un registro para poder eliminarlo");
+
+		}
+
+	}
+
+	protected void actionPerformedBtnGuardar(ActionEvent arg0) {
+
+		try {
+			int numCama = leerNumCama();
+			try {
+
+				int Categoria = cbxCategoria.getSelectedIndex();
+				double precio = Double.parseDouble(txtPrecio.getText());
+				int estado = cbxEstado.getSelectedIndex();
+				clase.Cama x = new clase.Cama(numCama, Categoria, precio, estado);
+				Proyecto.ac.adicionar(x);
+				DlgCama.listar();
+				limpieza();
+				inHabilitarEntradas();
+			} catch (Exception e) {
+				lib.mensajeError(this, "Ingrese un numero en precio");
+			}
+		} catch (Exception e) {
+			lib.mensajeError(this, "Ingrese un numero de cama");
+			txtCama.requestFocus();
+		}
+
+	}
+
+	protected void actionPerformedBtnVerTodoslistar(ActionEvent arg0) {
+		listar();
+	}
+
+	protected void actionPerformedBtnBuscar(ActionEvent arg0) {
+
+		/*
+		 * try { int codigo = leerNumCama(); cama a = aa.buscar(codigo); if (a == null)
+		 * mensaje("el CODIGO no existe"); else { aa.eliminar(a); listar(); }
+		 * txtCama.setText(""); txtCama.requestFocus(); } catch (Exception e1) {
+		 * mensaje("ingrese CODIGO correcto"); txtCama.setText("");
+		 * txtCama.requestFocus(); }
+		 */
+	}
+
+	void inHabilitarEntradas() {
+		cbxCategoria.setEnabled(false);
+		cbxEstado.setEnabled(false);
+		txtPrecio.setEditable(false);
+		txtCama.setEditable(false);
+
+	}
+
+	void habilitarEntradas() {
+		cbxCategoria.setEnabled(true);
+		cbxEstado.setEnabled(true);
+		txtPrecio.setEditable(true);
+		txtCama.setEditable(true);
+		txtCama.requestFocus();
+	}
+
+	/*
+	 * void habilitarBotones(boolean sino) { btnIngresar.setEnabled(sino);
+	 * btnModificar.setEnabled(sino);
+	 * 
+	 * 
+	 * }
+	 */
+
+	void limpieza() {
+		txtCama.setText("");
+		txtPrecio.setText("");
+		cbxEstado.setSelectedIndex(0);
+		cbxCategoria.setSelectedIndex(0);
+
+	}
+
+	void mensaje(String s) {
+		JOptionPane.showMessageDialog(this, s);
+	}
+
+	void editarFila() {
+		/*
+		 * if (ac.tamaño() == 0) limpieza(); else { cama x =
+		 * aa.obtener(table.getSelectedRow()); txtCama.setText("" + x.getNumCam());
+		 * cbcCategoria.setSelectedIndex(x.getCategoria());
+		 * cbcEstado.setSelectedIndex(x.getEstado());
+		 * 
+		 * }
+		 */
+		if (Proyecto.ac.tamaño() == 0)
+			limpieza();
+		else {
+			Cama x = Proyecto.ac.obtener(tableCama.getSelectedRow());
+			txtCama.setText("" + x.getNcama());
+			txtPrecio.setText("" + x.getPrecio());
+			cbxCategoria.setSelectedIndex(x.getCategoria());
+			cbxEstado.setSelectedIndex(x.getEstado());
+		}
+
+	}
+
+	public static void listar() {
+		modelo.setRowCount(0);
+		for (int i = 0; i < Proyecto.ac.tamaño(); i++) {
+			Object fila[] = { Proyecto.ac.obtener(i).getNcama(), Proyecto.ac.obtener(i).detalleCategoria(),
+					Proyecto.ac.obtener(i).getPrecio(), Proyecto.ac.obtener(i).detalleEstado() };
+			modelo.addRow(fila);
+		}
+		;
+
+	}
+
+	int leerNumCama() {
+		return Integer.parseInt(txtCama.getText().trim());
+	}
+
+	int leerPecio() {
+		return Integer.parseInt(txtPrecio.getText().trim());
+	}
+
+	int leerCategoria() {
+		return cbxCategoria.getSelectedIndex();
+	}
+
+	int leerEstado() {
+		return cbxEstado.getSelectedIndex();
+	}
+
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

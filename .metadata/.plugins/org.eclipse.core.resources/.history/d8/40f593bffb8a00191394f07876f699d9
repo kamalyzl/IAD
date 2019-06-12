@@ -1,0 +1,104 @@
+package guis;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
+import java.awt.Toolkit;
+
+public class DlgPaciente extends JDialog {
+	private JPanel panel;
+	private JLabel lblNombre;
+	private JLabel lblApellido;
+	private JLabel lblTelefono;
+	private JLabel lblDni;
+	private JTextField txtnom;
+	private JTextField txtape;
+	private JTextField txttel;
+	private JTextField txtdni;
+	private JScrollPane scrollPane;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgPaciente dialog = new DlgPaciente();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgPaciente() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\paciente internado.png"));
+		setTitle("Pacientes");
+		setBounds(100, 100, 600, 397);
+		getContentPane().setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBounds(0, 0, 584, 358);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		lblNombre = new JLabel("Nombres:");
+		lblNombre.setBounds(50, 14, 108, 14);
+		panel.add(lblNombre);
+		
+		lblApellido = new JLabel("Apellidos:");
+		lblApellido.setBounds(274, 14, 108, 14);
+		panel.add(lblApellido);
+		
+		lblTelefono = new JLabel("Tel\u00E9fono:");
+		lblTelefono.setBounds(50, 36, 108, 14);
+		panel.add(lblTelefono);
+		
+		lblDni = new JLabel("DNI:");
+		lblDni.setBounds(274, 36, 46, 14);
+		panel.add(lblDni);
+		
+		txtnom = new JTextField();
+		txtnom.setBounds(142, 11, 122, 20);
+		panel.add(txtnom);
+		txtnom.setColumns(10);
+		
+		txtape = new JTextField();
+		txtape.setColumns(10);
+		txtape.setBounds(346, 11, 122, 20);
+		panel.add(txtape);
+		
+		txttel = new JTextField();
+		txttel.setColumns(10);
+		txttel.setBounds(142, 33, 122, 20);
+		panel.add(txttel);
+		
+		txtdni = new JTextField();
+		txtdni.setColumns(10);
+		txtdni.setBounds(346, 33, 122, 20);
+		panel.add(txtdni);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 61, 564, 286);
+		panel.add(scrollPane);
+		
+		table = new JTable();
+		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		table.setFillsViewportHeight(true);
+		scrollPane.setViewportView(table);
+
+	}
+}

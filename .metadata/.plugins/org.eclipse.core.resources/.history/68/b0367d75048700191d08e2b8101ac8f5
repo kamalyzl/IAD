@@ -1,0 +1,183 @@
+package cibertec;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import libreria.lib;
+import java.awt.SystemColor;
+import java.awt.Color;
+import java.awt.Toolkit;
+import javax.swing.SwingConstants;
+
+public class DlgIngreso_Cama extends JDialog implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JLabel lblNumCama;
+	private JTextField txtNumCam;
+	private JLabel lblCat;
+	private JLabel lblPrecio;
+	private JTextField txtPrecio;
+	private JButton btnIngresar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgIngreso_Cama dialog = new DlgIngreso_Cama();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public DlgIngreso_Cama() {
+		getContentPane().setBackground(new Color(222, 184, 135));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgIngreso_Cama.class.getResource("/img/TriCell.jpg")));
+		setTitle("Ingreso Cama");
+		setBounds(100, 100, 506, 285);
+		
+		getContentPane().setLayout(null);
+		
+		lblNumCama = new JLabel("Nro. Cama:");
+		lblNumCama.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNumCama.setBounds(136, 94, 88, 25);
+		getContentPane().add(lblNumCama);
+		
+		txtNumCam = new JTextField();
+		txtNumCam.setBounds(274, 98, 86, 20);
+		getContentPane().add(txtNumCam);
+		txtNumCam.setColumns(10);
+		
+		lblCat = new JLabel("Categoria:");
+		lblCat.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCat.setBounds(136, 122, 88, 19);
+		getContentPane().add(lblCat);
+		
+		lblPrecio = new JLabel("Precio: (S/.)");
+		lblPrecio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblPrecio.setBounds(136, 150, 88, 14);
+		getContentPane().add(lblPrecio);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setBounds(274, 149, 86, 20);
+		getContentPane().add(txtPrecio);
+		txtPrecio.setColumns(10);
+		
+		btnIngresar = new JButton("Ingresar");
+		btnIngresar.addActionListener(this);
+		btnIngresar.setIcon(new ImageIcon("D:\\Proyecto_AED\\\u00B0\u00B0\u00B0proyecto aed\u00B0\u00B0\u00B0\\Proyecto 2017-2\\Imagenes\\ingresar.png"));
+		btnIngresar.setBounds(108, 212, 116, 23);
+		getContentPane().add(btnIngresar);
+		
+		cboCategoria = new JComboBox();
+		cboCategoria.setModel(new DefaultComboBoxModel(new String[] {"B\u00E1sico", "Estandar", "Premium"}));
+		cboCategoria.setBounds(274, 123, 86, 20);
+		getContentPane().add(cboCategoria);
+		
+		lblEstado = new JLabel("Estado:");
+		lblEstado.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblEstado.setBounds(153, 176, 71, 25);
+		getContentPane().add(lblEstado);
+		
+		cboEstado = new JComboBox<String>();
+		cboEstado.setModel(new DefaultComboBoxModel(new String[] {"Libre", "Ocupado"}));
+		cboEstado.setBounds(272, 180, 88, 20);
+		getContentPane().add(cboEstado);
+		
+		btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(this);
+		btnSalir.setBounds(244, 212, 116, 23);
+		getContentPane().add(btnSalir);
+		
+		txtingresoDeCama = new JTextField();
+		txtingresoDeCama.setHorizontalAlignment(SwingConstants.CENTER);
+		txtingresoDeCama.setFont(new Font("Verdana", Font.BOLD, 25));
+		txtingresoDeCama.setText("***INGRESO DE CAMA***");
+		txtingresoDeCama.setBackground(SystemColor.activeCaption);
+		txtingresoDeCama.setBounds(0, 0, 490, 68);
+		getContentPane().add(txtingresoDeCama);
+		txtingresoDeCama.setColumns(10);
+
+	}
+	public int leerNumCama()
+	{
+		return Integer.parseInt(txtNumCam.getText());
+	}
+	public int leerCategoria(){
+	return cboCategoria.getSelectedIndex();
+	}
+	public double leerPrecio(){
+		return Double.parseDouble(txtPrecio.getText());
+	}
+	public int leerEstado(){
+	return cboEstado.getSelectedIndex();
+	}
+	private JComboBox<String> cboCategoria;
+	private JLabel lblEstado;
+	private JComboBox<String> cboEstado;
+	private JButton btnSalir;
+	private JTextField txtingresoDeCama;
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnSalir) {
+			actionPerformedBtnSalir(arg0);
+		}
+		if (arg0.getSource() == btnIngresar) {
+			actionPerformedBtnIngresar(arg0);
+		}
+		
+		
+		
+	}
+	
+
+	protected void actionPerformedBtnIngresar(ActionEvent arg0) {
+		try {
+			int numCama=leerNumCama();
+			try {
+				 
+			     int Categoria=leerCategoria();
+			     double precio=leerPrecio();
+			     int estado=leerEstado();
+			     clase.Cama x=new clase.Cama(numCama,Categoria,precio,estado);
+
+			     Proyecto.ac.adicionar(x);
+			    DlgAdiCam.listar();
+			}
+			catch (Exception e) {
+			lib.mensajeError(this,"Ingrese un numero en precio");
+			}
+		}
+		catch (Exception e) {
+		lib.mensajeError(this,"Ingrese un numero de cama");
+			txtNumCam.requestFocus();
+		}
+    
+   
+	}		
+	protected void actionPerformedBtnSalir(ActionEvent arg0) {
+		dispose();
+	}
+}

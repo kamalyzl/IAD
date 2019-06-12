@@ -1,0 +1,135 @@
+package virtual;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import virtual.ArregloCodigos;
+
+public class Principal extends JFrame implements ActionListener {
+	private JPanel panel;
+	private JLabel lblIngreseUnNumero;
+	private JTextField textField;
+	private JTextArea txtS;
+	private JButton btnAdicionar;
+	private JButton btnIntercambiar;
+	private JButton btnIntercambiarsegpen;
+	private JButton btnEliminar;
+	private JButton btnIntercambiar_1;
+	private JButton btnEliminar_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal frame = new Principal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Principal() {
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBounds(0, 11, 434, 261);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		lblIngreseUnNumero = new JLabel("Ingrese un numero:");
+		lblIngreseUnNumero.setBounds(43, 24, 99, 14);
+		panel.add(lblIngreseUnNumero);
+		
+		textField = new JTextField();
+		textField.setBounds(148, 21, 86, 20);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		txtS = new JTextArea();
+		txtS.setBounds(41, 49, 193, 175);
+		panel.add(txtS);
+		
+		btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(this);
+		btnAdicionar.setBounds(279, 20, 129, 23);
+		panel.add(btnAdicionar);
+		
+		btnIntercambiar = new JButton("Intercambiar1");
+		btnIntercambiar.setBounds(279, 54, 129, 23);
+		panel.add(btnIntercambiar);
+		
+		btnIntercambiarsegpen = new JButton("IntercambiarSegPen");
+		btnIntercambiarsegpen.setBounds(279, 88, 129, 23);
+		panel.add(btnIntercambiarsegpen);
+		
+		btnEliminar = new JButton("Eliminar1");
+		btnEliminar.setBounds(279, 122, 129, 23);
+		panel.add(btnEliminar);
+		
+		btnIntercambiar_1 = new JButton("Intercambiar2");
+		btnIntercambiar_1.setBounds(279, 156, 129, 23);
+		panel.add(btnIntercambiar_1);
+		
+		btnEliminar_1 = new JButton("Eliminar2");
+		btnEliminar_1.setBounds(279, 190, 129, 23);
+		panel.add(btnEliminar_1);
+
+	}
+	
+//  Declaración global
+	ArregloCodigos a = new ArregloCodigos();
+	
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnAdicionar) {
+			actionPerformedBtnAdicionar(arg0);
+		}
+	}
+	protected void actionPerformedBtnAdicionar(ActionEvent arg0) {
+		try {
+			a.buscarAdicionar(leerNumero());  
+			listar();
+		}
+		catch (Exception e) {
+			mensaje("error de ingreso");
+	
+		
+		
+	}
+		
+		int leerNumero()  {
+			return Integer.parseInt(txtNumero.getText().trim());
+		}
+		
+		void listar() {
+			txtS.setText("");
+			for (int i=0; i<a.tamaño(); i++)
+				imprimir("n[" + i + "] : " + a.obtener(i));
+		}
+		void imprimir(String s) {
+			txtS.append(s + "\n");
+		}
+		
+		void mensaje(String s) {
+			JOptionPane.showMessageDialog(this, s);
+		}
+}

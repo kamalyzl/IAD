@@ -1,0 +1,80 @@
+package virtual;
+
+public class ArregloCodigos {
+	private int [] codigo ;
+	private int indice;
+	
+	public ArregloCodigos(){
+		codigo = new int [10];
+		indice=0;
+	}
+	public int tamaño(){
+		return codigo.length;
+	}
+	public int obtener(int i){
+		return codigo[i];
+	}
+	private void AmpliarArreglo(){
+		int [] aux =  codigo;
+		codigo = new int [indice+10];
+		for(int i=0;i<indice;i++)
+			codigo[i]=aux[i];
+	}
+	private void adicionar(int numero){
+		if(indice==codigo.length)
+			AmpliarArreglo();
+		codigo[indice]=numero;
+		indice++;
+	}
+	
+	private void intercambiarSegPen(){
+		//se comienza desde el indice 1 que es el segundo y el tamaño del indice es el total del arreglo
+		//se le resta 2 siendo esta penúltima.
+		for(int i=1;i<indice-2;i++)
+			//intercambiamos el segundo con el penultimo
+			intercambiar(i,indice+1);
+	
+	}
+	private int eliminarPrimero(){
+		return indice --;
+	}
+	private int buscarCodigo(int numero){
+		for (int i=0; i<indice; i++)
+			if (codigo[i] == numero)
+				return i;
+		return -1;
+	
+	}
+	private void intercambiarCodigo(){
+		int i;
+		// se recorre todo el arreglo
+		for(i=0;i<indice-1;i++)
+			//se requiere que el codigo se encuentre en el rango de 1000 a 1111
+		if(codigo[i]>=1000 && codigo[i]<=1111)
+			//el ultimo indice que tiene el criteo de 1000 a 1111 se reemplazara en la terecera posicion del arreglo que es i+2
+			codigo[i]=codigo[i+2];
+		intercambiar(i,i+2);
+	}
+	
+	private void intercambiar(int pos1, int pos2) {
+		int aux = codigo[pos1];
+		codigo[pos1] = codigo[pos2];
+		codigo[pos2] = aux;
+	}
+	
+	
+	private int eliminarCodigo(){
+		int i;
+		// se recorre todo el arreglo
+		for(i=0;i<indice-1;i++)
+			//se requiere que el codigo se encuentre en el rango de 1000 a 1111
+		if(codigo[i]>=1000 && codigo[i]<=1111)
+			//ese indice tomado lo elimina de acuerdo a los criterios en el rango establecido
+				return i--;
+		return -1;
+		}
+	
+	
+	
+	}
+		

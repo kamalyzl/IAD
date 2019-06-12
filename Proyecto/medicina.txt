@@ -1,0 +1,4 @@
+3001;ibuprofeno;labum;100.0;20
+3002;cilocaina;labum;170.0;10
+3003;panadol;labum;2.5;1
+3004;Redoxon;labum;2.0;5

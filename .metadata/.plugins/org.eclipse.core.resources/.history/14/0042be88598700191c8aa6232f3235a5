@@ -1,0 +1,478 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Arreglo.ArregloCama;
+
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JMenuBar;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JMenu;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.JTextArea;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.BevelBorder;
+
+public class Proyecto extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	private JMenuBar menuBar;
+	private JMenu mnArchivo;
+	private JMenuItem mntmSalir;
+	private JMenu mntMantenimiento;
+	private JMenu mnCama;
+	private JMenu mnPago;
+	private JMenu mnReporte;
+	private JMenu mnRegistro;
+	private JMenu mnPaciente;
+	private JMenu mnMedicina;
+	private JMenuItem mntmAdicam;
+	private JMenuItem mntmConCam;
+	private JMenuItem mntmModCam;
+	private JMenuItem mntmAdiPac;
+	private JMenuItem mntmConPac;
+	private JMenuItem mntmModPac;
+	private JMenuItem mntmAdiMed;
+	private JMenuItem mntmConMed;
+	private JMenuItem mntmModMed;
+	private JMenuItem mntmEliminar;
+	private JMenuItem mntmLisCam;
+	private JMenuItem mntEliPac;
+	private JMenuItem mntmLisPac;
+	private JMenuItem mntmEliMed;
+	private JMenuItem mntmLisMed;
+	private JMenuItem mntmConPag;
+	private JMenuItem mntmConPen;
+	private JMenuItem mntmIntPen;
+	private JMenuItem mntmIntPag;
+	private JMenuItem mntmCon;
+	private JMenuItem mntmInt;
+	private JMenuItem mntmConsul;
+	private JMenuItem mntmInter;
+	private JLabel label;
+
+	/**
+	 * Launch the application.
+	 */
+	
+	public static ArregloCama ac=new ArregloCama();
+	
+	
+	private int ALTO;
+
+
+
+	private int ANCHO;
+	private JList list;
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Proyecto frame = new Proyecto();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Proyecto() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Proyecto.class.getResource("/img/TriCell.jpg")));
+		setTitle("Proyecto de atenci\u00F3n al cliente");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 615, 300);
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		mnArchivo = new JMenu("Archivo");
+		mnArchivo.setHorizontalAlignment(SwingConstants.LEFT);
+		menuBar.add(mnArchivo);
+		
+		mntmSalir = new JMenuItem("Salir");
+		mntmSalir.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\logout.jpg"));
+		mntmSalir.addActionListener(this);
+		mnArchivo.add(mntmSalir);
+		
+		mntMantenimiento = new JMenu("Mantenimiento");
+		mntMantenimiento.setSelectedIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\cama.png"));
+		menuBar.add(mntMantenimiento);
+		
+		mnCama =new JMenu("Cama");
+		mntMantenimiento.add(mnCama);
+		
+		mntmAdicam = new JMenuItem("Adicionar");
+		mntmAdicam.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\cama.png"));
+		mntmAdicam.addActionListener(this);
+		mnCama.add(mntmAdicam);
+		
+		mntmConCam = new JMenuItem("Consultar");
+		mntmConCam.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\consulta.png"));
+		mntmConCam.addActionListener(this);
+		mnCama.add(mntmConCam);
+		
+		mntmModCam = new JMenuItem("Modificar");
+		mntmModCam.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\modificar.png"));
+		mntmModCam.addActionListener(this);
+		mnCama.add(mntmModCam);
+		
+		mntmEliminar = new JMenuItem("Eliminar");
+		mntmEliminar.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\eliminar.png"));
+		mntmEliminar.addActionListener(this);
+		mnCama.add(mntmEliminar);
+		
+		mntmLisCam = new JMenuItem("Listar");
+		mntmLisCam.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\reportar.png"));
+		mntmLisCam.addActionListener(this);
+		mnCama.add(mntmLisCam);
+		
+		mnPaciente = new JMenu("Paciente");
+		mntMantenimiento.add(mnPaciente);
+		
+		mntmAdiPac = new JMenuItem("Adicionar");
+		mntmAdiPac.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\paciente.png"));
+		mntmAdiPac.addActionListener(this);
+		mnPaciente.add(mntmAdiPac);
+		
+		mntmConPac = new JMenuItem("Consultar");
+		mntmConPac.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\consulta.png"));
+		mntmConPac.addActionListener(this);
+		mnPaciente.add(mntmConPac);
+		
+		mntmModPac = new JMenuItem("Modificar");
+		mntmModPac.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\modificar.png"));
+		mntmModPac.addActionListener(this);
+		mnPaciente.add(mntmModPac);
+		
+		mntEliPac = new JMenuItem("Eliminar");
+		mntEliPac.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\elipac.jpg"));
+		mntEliPac.addActionListener(this);
+		mnPaciente.add(mntEliPac);
+		
+		mntmLisPac = new JMenuItem("Listar");
+		mntmLisPac.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\reportar.png"));
+		mntmLisPac.addActionListener(this);
+		mnPaciente.add(mntmLisPac);
+		
+		mnMedicina = new JMenu("Medicina");
+		mntMantenimiento.add(mnMedicina);
+		
+		mntmAdiMed = new JMenuItem("Adicionar");
+		mntmAdiMed.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\medicina.png"));
+		mntmAdiMed.addActionListener(this);
+		mnMedicina.add(mntmAdiMed);
+		
+		mntmConMed = new JMenuItem("Consultar");
+		mntmConMed.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\consulta.png"));
+		mnMedicina.add(mntmConMed);
+		
+		mntmModMed = new JMenuItem("Modificar");
+		mntmModMed.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\modificar.png"));
+		mnMedicina.add(mntmModMed);
+		
+		mntmEliMed = new JMenuItem("Eliminar");
+		mntmEliMed.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\eliminar.png"));
+		mnMedicina.add(mntmEliMed);
+		
+		mntmLisMed = new JMenuItem("Listar");
+		mntmLisMed.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\reportar.png"));
+		mnMedicina.add(mntmLisMed);
+		
+		mnRegistro = new JMenu("Registro");
+		menuBar.add(mnRegistro);
+		
+		mntmConsul = new JMenuItem("Consultas");
+		mntmConsul.addActionListener(this);
+		mnRegistro.add(mntmConsul);
+		
+		mntmInter = new JMenuItem("Internamientos");
+		mntmInter.addActionListener(this);
+		mnRegistro.add(mntmInter);
+		
+		mnPago = new JMenu("Pago");
+		menuBar.add(mnPago);
+		
+		mntmCon = new JMenuItem("Consultas");
+		mntmCon.addActionListener(this);
+		mnPago.add(mntmCon);
+		
+		mntmInt = new JMenuItem("Internamientos");
+		mntmInt.addActionListener(this);
+		mnPago.add(mntmInt);
+		
+		mnReporte = new JMenu("Reporte");
+		menuBar.add(mnReporte);
+		
+		mntmConPen = new JMenuItem("Consultas-Pendientes");
+		mntmConPen.addActionListener(this);
+		mnReporte.add(mntmConPen);
+		
+		mntmConPag = new JMenuItem("Consultas-Pagadas");
+		mntmConPag.addActionListener(this);
+		mnReporte.add(mntmConPag);
+		
+		mntmIntPen = new JMenuItem("Internamientos-Pendientes");
+		mntmIntPen.addActionListener(this);
+		mnReporte.add(mntmIntPen);
+		
+		mntmIntPag = new JMenuItem("Internamientos-Pagados");
+		mntmIntPag.addActionListener(this);
+		mnReporte.add(mntmIntPag);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		list = new JList();
+		list.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		list.setBackground(new Color(222, 184, 135));
+		list.setForeground(SystemColor.textHighlight);
+		list.setFont(new Font("Georgia", Font.BOLD, 14));
+		list.setModel(new AbstractListModel() {
+			String[] values = new String[] {"        Proyecto de atenci\u00F3n al cliente para:", "                       \"Clinica Bautista\"", "                           Integrantes:", "                          [***2019-01***]", "                    Brian Vel\u00EDz. (dise\u00F1o)", "                    Kamaly Zapana.(prg)", "                    Fernando Padilla.(mon.)", "                    Jorge Quispe.(mon.)", "", "                          [*************]"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list.setBounds(0, 0, 311, 240);
+		contentPane.add(list);
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\clinica-bautista.jpg"));
+		label.setBounds(0, 0, 600, 240);
+		contentPane.add(label);
+	}
+
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == mntmIntPag) {
+			actionPerformedMntmIntPag(arg0);
+		}
+		if (arg0.getSource() == mntmIntPen) {
+			actionPerformedMntmIntPen(arg0);
+		}
+		if (arg0.getSource() == mntmConPag) {
+			actionPerformedMntmConPag(arg0);
+		}
+		if (arg0.getSource() == mntmConPen) {
+			actionPerformedMntmConPen(arg0);
+		}
+		if (arg0.getSource() == mntmInt) {
+			actionPerformedMntmInt(arg0);
+		}
+		if (arg0.getSource() == mntmCon) {
+			actionPerformedMntmCon(arg0);
+		}
+		if (arg0.getSource() == mntmInter) {
+			actionPerformedMntmInter(arg0);
+		}
+		if (arg0.getSource() == mntmConsul) {
+			actionPerformedMntmConsul(arg0);
+		}
+		if (arg0.getSource() == mntmLisPac) {
+			actionPerformedMntmLisPac(arg0);
+		}
+		if (arg0.getSource() == mntEliPac) {
+			actionPerformedMntEliPac(arg0);
+		}
+		if (arg0.getSource() == mntmModPac) {
+			actionPerformedMntmModPac(arg0);
+		}
+		if (arg0.getSource() == mntmConPac) {
+			actionPerformedMntmConPac(arg0);
+		}
+		if (arg0.getSource() == mntmLisCam) {
+			actionPerformedMntmLisCam(arg0);
+		}
+		if (arg0.getSource() == mntmEliminar) {
+			actionPerformedMntmEliminar(arg0);
+		}
+		if (arg0.getSource() == mntmModCam) {
+			actionPerformedMntmModCam(arg0);
+		}
+		if (arg0.getSource() == mntmConCam) {
+			actionPerformedMntmConCam(arg0);
+		}
+		if (arg0.getSource() == mntmAdiMed) {
+			actionPerformedMntmAdiMed(arg0);
+		}
+		if (arg0.getSource() == mntmAdiPac) {
+			actionPerformedMntmAdiPac(arg0);
+		}
+		if (arg0.getSource() == mntmAdicam) {
+			actionPerformedMntmAdicam(arg0);
+		}
+		if (arg0.getSource() == mntmSalir) {
+			actionPerformedMntmSalir(arg0);
+		}
+	}
+	protected void actionPerformedMntmSalir(ActionEvent arg0) {
+		dispose();
+		JOptionPane.showMessageDialog(null,"Usted ha salido del Sistema !!");
+	}
+	protected void actionPerformedMntmAdicam(ActionEvent arg0) {
+			DlgAdiCam dac = new DlgAdiCam();
+			dac.setLocationRelativeTo(this);
+			dac.setVisible(true);
+			
+		
+		
+		//JOptionPane.showMessageDialog(null,"La adición de la cama se realizo con exito... !");
+		}
+	
+	protected void actionPerformedMntmAdiPac(ActionEvent arg0) {
+			DlgAdiPac dAP = new DlgAdiPac();
+			dAP.setLocationRelativeTo(this);
+			dAP.setVisible(true);
+			
+		
+		
+		JOptionPane.showMessageDialog(null,"La adición del paciente se realizo con exito... !");
+		
+	}
+	protected void actionPerformedMntmAdiMed(ActionEvent arg0) {
+		DlgAdiMed dam = new DlgAdiMed();
+			dam.setLocationRelativeTo(this);
+			dam.setVisible(true);
+			
+		
+		JOptionPane.showMessageDialog(null,"La adición de la medicina se realizo con exito... !");
+		}
+	protected void actionPerformedMntmConCam(ActionEvent arg0) {
+		DlgConCam dCC = new DlgConCam();
+			dCC.setLocationRelativeTo(this);
+			dCC.setVisible(true);
+			}
+	protected void actionPerformedMntmModCam(ActionEvent arg0) {
+		DlgModCam dMC = new DlgModCam();
+			dMC.setLocationRelativeTo(this);
+			dMC.setVisible(true);
+			
+	}
+	protected void actionPerformedMntmEliminar(ActionEvent arg0) {
+		DlgEliCam dEC = new DlgEliCam();
+			dEC.setLocationRelativeTo(this);
+			dEC.setVisible(true);
+			
+	}
+	protected void actionPerformedMntmLisCam(ActionEvent arg0) {
+		DlgLisCam dLC = new DlgLisCam();
+			dLC.setLocationRelativeTo(this);
+			dLC.setVisible(true);
+			
+	}
+	protected void actionPerformedMntmConPac(ActionEvent arg0) {
+		DlgConPac dCP = new DlgConPac();
+			dCP.setLocationRelativeTo(this);
+			dCP.setVisible(true);
+			}
+	protected void actionPerformedMntmModPac(ActionEvent arg0) {
+		DlgModPac dMP = new DlgModPac();
+			dMP.setLocationRelativeTo(this);
+			dMP.setVisible(true);
+			}
+	protected void actionPerformedMntEliPac(ActionEvent arg0) {
+		DlgEliPac dEP= new DlgEliPac();
+			dEP.setLocationRelativeTo(this);
+			dEP.setVisible(true);
+			
+	}
+	protected void actionPerformedMntmLisPac(ActionEvent arg0) {
+		DlgLisPac dLP = new DlgLisPac();
+			dLP.setLocationRelativeTo(this);
+			dLP.setVisible(true);
+			
+	}
+	protected void actionPerformedMntmConsul(ActionEvent arg0) {
+			DlgRConsultas dRC = new DlgRConsultas();
+			dRC.setLocationRelativeTo(this);
+			dRC.setVisible(true);
+			
+	}
+	protected void actionPerformedMntmInter(ActionEvent arg0) {
+			DlgRInternamientos dRI = new DlgRInternamientos();
+			dRI.setLocationRelativeTo(this);
+			dRI.setVisible(true);
+			
+	}
+	protected void actionPerformedMntmCon(ActionEvent arg0) {
+		DlgPConsultas dPC = new DlgPConsultas();
+			dPC.setLocationRelativeTo(this);
+			dPC.setVisible(true);
+		
+	}
+	protected void actionPerformedMntmInt(ActionEvent arg0) {
+		DlgPInternamientos dPI = new DlgPInternamientos();
+			dPI.setLocationRelativeTo(this);
+			dPI.setVisible(true);
+			}
+	
+	protected void actionPerformedMntmConPen(ActionEvent arg0) {
+		DlgRepConsultasPendientes dCP = new DlgRepConsultasPendientes();
+			dCP.setLocationRelativeTo(this);
+			dCP.setVisible(true);
+			
+	}
+	protected void actionPerformedMntmConPag(ActionEvent arg0) {
+		DlgRepConsultasPagadas dCP = new DlgRepConsultasPagadas();
+			dCP.setLocationRelativeTo(this);
+			dCP.setVisible(true);
+			
+	}
+	protected void actionPerformedMntmIntPen(ActionEvent arg0) {
+		DlgRepInternamientosPendientes dIP = new DlgRepInternamientosPendientes();
+		dIP.setLocationRelativeTo(this);
+		dIP.setVisible(true);
+	
+	}
+	protected void actionPerformedMntmIntPag(ActionEvent arg0) {
+		DlgRepInternamientosPagados dIP = new DlgRepInternamientosPagados();
+		dIP.setLocationRelativeTo(this);
+		dIP.setVisible(true);
+	
+	}
+	}

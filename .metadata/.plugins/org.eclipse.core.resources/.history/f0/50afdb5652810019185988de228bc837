@@ -1,0 +1,90 @@
+package cibertec;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.Toolkit;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
+import javax.swing.JButton;
+import javax.swing.table.DefaultTableModel;
+
+public class DlgConCam extends JDialog {
+	private JLabel lblNewLabel;
+	private JLabel lblConsultar;
+	private JComboBox comboBox;
+	private JTable table;
+	private JButton btnBuscar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgConCam dialog = new DlgConCam();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgConCam() {
+		setTitle("Consultar Camas");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgConCam.class.getResource("/img/TriCell.jpg")));
+		setBounds(100, 100, 420, 300);
+		getContentPane().setLayout(null);
+		
+		lblConsultar = new JLabel("Consultar:");
+		lblConsultar.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblConsultar.setBounds(46, 35, 104, 17);
+		getContentPane().add(lblConsultar);
+		
+		comboBox = new JComboBox();
+		comboBox.setBounds(160, 36, 94, 21);
+		getContentPane().add(comboBox);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{},
+				{},
+				{},
+			},
+			new String[] {
+			}
+		));
+		table.setCellSelectionEnabled(true);
+		table.setColumnSelectionAllowed(true);
+		table.setFillsViewportHeight(true);
+		table.setBackground(Color.LIGHT_GRAY);
+		table.setForeground(Color.LIGHT_GRAY);
+		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		table.setBounds(46, 75, 312, 160);
+		getContentPane().add(table);
+		
+		btnBuscar = new JButton("BUSCAR");
+		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnBuscar.setBounds(269, 35, 89, 23);
+		getContentPane().add(btnBuscar);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Z3r0Limited\\Documents\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\SV4.png"));
+		lblNewLabel.setBounds(0, 0, 404, 261);
+		getContentPane().add(lblNewLabel);
+
+	}
+
+}

@@ -1,0 +1,9 @@
+package clase;
+
+public class Paciente {
+
+	// Atributos privados
+	private int codigoPaciente;
+	private String nombres, apellidos, telefono, dni;
+
+}

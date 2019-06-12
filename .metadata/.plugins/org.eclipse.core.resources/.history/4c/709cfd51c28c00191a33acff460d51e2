@@ -1,0 +1,26 @@
+package Arreglo;
+import clase.Paciente;
+import java.util.ArrayList;
+public class ArregloPaciente {
+	private ArrayList <Paciente> pac;
+	//constructor
+	public ArregloPaciente(){
+		pac = new ArrayList <Paciente>();
+		adicionar(new Paciente(0,1,'s'));
+		adicionar(new Paciente(0,3,'n'));
+		adicionar(new Paciente(0,2,'n'));
+		adicionar(new Paciente(0,1,'s'));
+	}
+	public void adicionar(Paciente x){
+		pac.add(x);
+
+	}
+	public int tamaño(){
+		return pac.size();
+	}
+	
+	public Paciente obtener(int i){
+		return pac.get(i);
+	}
+	
+}
