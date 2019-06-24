@@ -2,13 +2,19 @@ package guis;
 
 import java.awt.EventQueue;
 
+import Arreglo.ArregloMedicina;
+import clase.Medicina;
+import libreria.Alerta;
+
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -17,26 +23,39 @@ import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import java.awt.Toolkit;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
 
-public class DlgMed extends JDialog {
+public class DlgMed extends JDialog implements ActionListener, MouseListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel;
-	private JLabel lblCantidad;
 	private JLabel lblPreciounitario;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JScrollPane scrollPane;
-	private JButton button;
-	private JButton button_1;
-	private JButton button_2;
-	private JButton button_3;
-	private JButton button_4;
-	private JTextField textField_4;
+	private JButton btnAdicionar;
+	private static DefaultTableModel modelo;
+	private JButton btnConsultar;
+	private JButton btnModificar;
+	private JButton btnEliminar;
+	private JButton btnListar;
 	private JLabel label_4;
-	private JLabel lblelCdigoDe;
-	private JButton btnPorCantidad;
-	private JButton btnPorPrecio;
-	private JTable table;
-	private JPanel panel_1;
+	private JTable tblmed;
+	private JLabel label;
+	private JButton btnGrabar;
+	private JLabel lblLaboratorio;
+	private JTextField txtLaboratorio;
+	private JLabel lblStock;
+	private JTextField txtStock;
+	private JLabel lblNombre;
+	private JTextField txtNombre;
+	private JButton btnBuscar;
+	private JScrollPane scrollPane;
+	private JTextField txtPrecioUnitario;
+	private JTextField txtCodigo;
 
 	/**
 	 * Launch the application.
@@ -59,109 +78,382 @@ public class DlgMed extends JDialog {
 	 * Create the dialog.
 	 */
 	public DlgMed() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\TriCell.jpg"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgMed.class.getResource("/img/medicina.jpg")));
 		setTitle("Medicamentos:");
-		setBounds(100, 100, 610, 331);
+		setBounds(100, 100, 677, 665);
 		getContentPane().setLayout(null);
-		
+
 		panel = new JPanel();
-		panel.setBounds(0, 0, 594, 291);
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(0, 0, 659, 618);
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "", TitledBorder.LEFT, TitledBorder.TOP,
+				null, new Color(0, 0, 0)));
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
-		lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setBounds(30, 34, 57, 14);
-		panel.add(lblCantidad);
-		
+
 		lblPreciounitario = new JLabel("Precio/unitario:");
-		lblPreciounitario.setBounds(30, 59, 86, 14);
+		lblPreciounitario.setBounds(23, 242, 92, 30);
 		panel.add(lblPreciounitario);
+
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Codigo:");
+		modelo.addColumn("Nombre:");
+		modelo.addColumn("Laboratorio:");
+		modelo.addColumn("Precio");
+		modelo.addColumn("Stock:");
 		
-		textField = new JTextField();
-		textField.setBounds(129, 31, 57, 20);
-		textField.setForeground(Color.WHITE);
-		textField.setColumns(10);
-		textField.setBackground(Color.LIGHT_GRAY);
-		panel.add(textField);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(129, 56, 57, 20);
-		textField_1.setForeground(Color.WHITE);
-		textField_1.setColumns(10);
-		textField_1.setBackground(Color.LIGHT_GRAY);
-		panel.add(textField_1);
-		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 105, 560, 172);
-		panel.add(scrollPane);
-		
-		table = new JTable();
-		table.setBackground(new Color(192, 192, 192));
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setFillsViewportHeight(true);
-		scrollPane.setViewportView(table);
-		
-		button = new JButton("ADICIONAR");
-		button.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\ingresar.png"));
-		button.setBounds(196, 34, 133, 40);
-		button.setFont(new Font("Tahoma", Font.BOLD, 11));
-		button.setBackground(Color.WHITE);
-		panel.add(button);
-		
-		button_1 = new JButton("CONSULTAR");
-		button_1.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\generar.png"));
-		button_1.setBounds(74, 80, 133, 23);
-		button_1.setBackground(new Color(176, 224, 230));
-		panel.add(button_1);
-		
-		button_2 = new JButton("MODIFICAR");
-		button_2.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\modificar.png"));
-		button_2.setBounds(206, 80, 137, 23);
-		button_2.setBackground(new Color(176, 224, 230));
-		panel.add(button_2);
-		
-		button_3 = new JButton("ELIMINAR");
-		button_3.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\eliminar.png"));
-		button_3.setBounds(336, 80, 133, 23);
-		button_3.setBackground(new Color(176, 224, 230));
-		panel.add(button_3);
-		
-		button_4 = new JButton("LISTAR");
-		button_4.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\reportar.png"));
-		button_4.setBounds(466, 80, 104, 23);
-		button_4.setBackground(new Color(176, 224, 230));
-		panel.add(button_4);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(129, 10, 57, 20);
-		textField_4.setForeground(Color.WHITE);
-		textField_4.setColumns(10);
-		textField_4.setBackground(Color.RED);
-		panel.add(textField_4);
-		
+
+		btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(this);
+		btnAdicionar.setIcon(
+				new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\ingresar.png"));
+		btnAdicionar.setBounds(23, 23, 94, 29);
+		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnAdicionar.setBackground(Color.WHITE);
+		panel.add(btnAdicionar);
+
+		btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(this);
+		btnConsultar.setIcon(new ImageIcon(DlgMed.class.getResource("/img/consulta.png")));
+		btnConsultar.setBounds(129, 23, 111, 29);
+		btnConsultar.setBackground(new Color(238, 232, 170));
+		panel.add(btnConsultar);
+
+		btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(this);
+		btnModificar.setIcon(new ImageIcon(DlgMed.class.getResource("/img/modificar.png")));
+		btnModificar.setBounds(259, 23, 113, 33);
+		btnModificar.setBackground(new Color(238, 232, 170));
+		panel.add(btnModificar);
+
+		btnEliminar = new JButton("Eliminar");
+		btnEliminar.addActionListener(this);
+		btnEliminar.setIcon(new ImageIcon(DlgMed.class.getResource("/img/eliminar.png")));
+		btnEliminar.setBounds(384, 23, 107, 33);
+		btnEliminar.setBackground(new Color(238, 232, 170));
+		panel.add(btnEliminar);
+
+		btnListar = new JButton("Listar");
+		btnListar.addActionListener(this);
+		btnListar.setIcon(new ImageIcon(DlgMed.class.getResource("/img/registrar.png")));
+		btnListar.setBounds(503, 23, 91, 33);
+		btnListar.setBackground(new Color(238, 232, 170));
+		panel.add(btnListar);
+
 		label_4 = new JLabel("C\u00F3digo:");
-		label_4.setBounds(30, 9, 57, 21);
+		label_4.setBounds(30, 104, 60, 30);
 		label_4.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		panel.add(label_4);
-		
-		lblelCdigoDe = new JLabel("(*)El c\u00F3digo de medicamento comienza con 'm' luego son n\u00FAmeros");
-		lblelCdigoDe.setBounds(200, 9, 384, 14);
-		lblelCdigoDe.setForeground(Color.RED);
-		panel.add(lblelCdigoDe);
-		
-		btnPorCantidad = new JButton("Por Cantidad");
-		btnPorCantidad.setBounds(336, 55, 111, 23);
-		panel.add(btnPorCantidad);
-		
-		btnPorPrecio = new JButton("Por Precio");
-		btnPorPrecio.setBounds(445, 55, 98, 23);
-		panel.add(btnPorPrecio);
-		
-		panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Ordenar por:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(336, 34, 207, 39);
-		panel.add(panel_1);
+
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(DlgMed.class.getResource("/img/Foto_de_Medicamentos.jpg")));
+		label.setBounds(489, 235, 129, 61);
+		panel.add(label);
+
+		btnGrabar = new JButton("Aceptar");
+		btnGrabar.addActionListener(this);
+		btnGrabar.setBounds(289, 269, 97, 25);
+		panel.add(btnGrabar);
+
+		lblLaboratorio = new JLabel("Laboratorio");
+		lblLaboratorio.setBounds(23, 201, 65, 16);
+		panel.add(lblLaboratorio);
+
+		txtLaboratorio = new JTextField();
+		txtLaboratorio.setBounds(129, 198, 116, 22);
+		panel.add(txtLaboratorio);
+		txtLaboratorio.setColumns(10);
+
+		lblStock = new JLabel("Stock");
+		lblStock.setBounds(36, 280, 56, 16);
+		panel.add(lblStock);
+
+		txtStock = new JTextField();
+		txtStock.setBounds(143, 274, 116, 22);
+		panel.add(txtStock);
+		txtStock.setColumns(10);
+
+		lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(34, 161, 56, 16);
+		panel.add(lblNombre);
+
+		txtNombre = new JTextField();
+		txtNombre.setBounds(129, 155, 116, 22);
+		panel.add(txtNombre);
+		txtNombre.setColumns(10);
+
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(this);
+		btnBuscar.setBounds(275, 107, 97, 25);
+		panel.add(btnBuscar);
+
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(23, 332, 624, 273);
+		panel.add(scrollPane);
+
+		tblmed = new JTable();
+		scrollPane.setViewportView(tblmed);
+		tblmed.addMouseListener(this);
+		tblmed.setBackground(new Color(192, 192, 192));
+		tblmed.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		tblmed.setFillsViewportHeight(true);
+		tblmed.setModel(modelo);
+
+		txtPrecioUnitario = new JTextField();
+		txtPrecioUnitario.setBounds(133, 246, 116, 22);
+		panel.add(txtPrecioUnitario);
+		txtPrecioUnitario.setColumns(10);
+
+		txtCodigo = new JTextField();
+		txtCodigo.setBounds(129, 108, 116, 22);
+		panel.add(txtCodigo);
+		txtCodigo.setColumns(10);
+
+		habilitarEntradas(false);
+		habilitarCodigo(false);
+
+	}
+
+	ArregloMedicina amed = new ArregloMedicina("medicina.txt");
+
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnBuscar) {
+			actionPerformedBtnBuscar(arg0);
+		}
+		if (arg0.getSource() == btnListar) {
+			actionPerformedBtnListar(arg0);
+		}
+		if (arg0.getSource() == btnEliminar) {
+			actionPerformedBtnEliminar(arg0);
+		}
+		if (arg0.getSource() == btnModificar) {
+			actionPerformedBtnModificar(arg0);
+		}
+		if (arg0.getSource() == btnConsultar) {
+			actionPerformedBtnConsultar(arg0);
+		}
+		if (arg0.getSource() == btnAdicionar) {
+			actionPerformedBtnAdicionar(arg0);
+		}
+		if (arg0.getSource() == btnGrabar) {
+			actionPerformedBtnGrabar(arg0);
+		}
+	}
+
+	protected void actionPerformedBtnBuscar(ActionEvent arg0) {
+
+		try {
+			Medicina a = amed.buscar(leerCodigo());
+			if (a != null) {
+				txtNombre.setText("" + a.getNombre());
+				txtLaboratorio.setText("" + a.getLaboratorio());
+				txtPrecioUnitario.setText("" + a.getPrecioUnitario());
+				txtStock.setText("" + a.getStock());
+
+			} else {
+				mensaje("el CODIGO " + leerCodigo() + " no existe");
+			}
+
+			habilitarCodigo(false);
+
+		} catch (Exception e1) {
+			mensaje("Ingrese un código");
+		}
+
+	}
+
+	protected void actionPerformedBtnGrabar(ActionEvent arg0) {
+		try {
+			Medicina a = amed.buscar(leerCodigo());
+			if (a != null) {
+				a.setNombre(leerNombre());
+				a.setLaboratorio(leerLaboratorio());
+				a.setPrecioUnitario(leerPrecioUnitario());
+				a.setStock(leerStock());
+				listar();
+				limpieza();
+				habilitarEntradas(false);
+				habilitarCodigo(false);
+			} else {
+				clase.Medicina x = new clase.Medicina(leerCodigo(), leerNombre(), leerLaboratorio(),
+						leerPrecioUnitario(), leerStock());
+				amed.adicionar(x);
+				listar();
+				limpieza();
+				habilitarEntradas(false);
+				habilitarCodigo(false);
+			}
+		} catch (Exception e) {
+			mensaje("No existen datos que agregar");
+
+		}
+	}
+
+	protected void actionPerformedBtnAdicionar(ActionEvent arg0) {
+		limpieza();
+		txtCodigo.setText("" + amed.codigoCorrelativo());
+		habilitarEntradas(true);
+	}
+
+	protected void actionPerformedBtnConsultar(ActionEvent arg0) {
+		limpieza();
+		habilitarCodigo(true);
+		habilitarEntradas(false);
+	}
+
+	protected void actionPerformedBtnModificar(ActionEvent arg0) {
+
+		try {
+			int codigo = leerCodigo();
+			Medicina a = amed.buscar(codigo);
+			if (a == null)
+				mensaje("Selecciona un registro");
+			else {
+				habilitarEntradas(true);
+			}
+
+		} catch (Exception e1) {
+			mensaje("Selecciona un registro");
+
+		}
+	}
+
+	protected void actionPerformedBtnEliminar(ActionEvent arg0) {
+		try {
+			int codigo = leerCodigo();
+			Medicina a = amed.buscar(codigo);
+			if (a == null)
+				Alerta.mensaje(this, "Selecciona un registro");
+			else {
+
+				int ok = Alerta.confirmar(this, "Esta seguro que desea eliminar " + leerCodigo());
+				if (ok == 0) {
+					amed.eliminar(a);
+					listar();
+					limpieza();
+					habilitarEntradas(false);
+				}
+
+				habilitarEntradas(false);
+				limpieza();
+			}
+			habilitarEntradas(false);
+			limpieza();
+
+		} catch (Exception e1) {
+			mensaje("Selecciona un registro");
+
+		}
+	}
+
+	protected void actionPerformedBtnListar(ActionEvent arg0) {
+		listar();
+	}
+
+	void habilitarEntradas(boolean is) {
+		txtNombre.setEditable(is);
+		txtLaboratorio.setEditable(is);
+		txtStock.setEditable(is);
+		txtPrecioUnitario.setEditable(is);
+	}
+
+	void habilitarCodigo(boolean is) {
+		txtCodigo.setEditable(is);
+		txtCodigo.requestFocus();
+	}
+
+	void limpieza() {
+		txtCodigo.setText("");
+		txtNombre.setText("");
+		txtLaboratorio.setText("");
+		txtPrecioUnitario.setText("");
+		txtStock.setText("");
+
+	}
+
+	void mensaje(String s) {
+		JOptionPane.showMessageDialog(this, s);
+	}
+
+	void editarFila() {
+
+		if (amed.tamaño() == 0)
+			limpieza();
+		else {
+			Medicina x = amed.obtener(tblmed.getSelectedRow());
+			txtCodigo.setText("" + x.getCodigoMedicina());
+			txtNombre.setText("" + x.getNombre());
+			txtLaboratorio.setText("" + x.getLaboratorio());
+			txtPrecioUnitario.setText("" + x.getPrecioUnitario());
+			txtStock.setText("" + x.getStock());
+		}
+
+	}
+
+	void listar() {
+		modelo.setRowCount(0);
+		for (int i = 0; i < amed.tamaño(); i++) {
+			Object fila[] = { amed.obtener(i).getCodigoMedicina(), amed.obtener(i).getNombre(),
+					amed.obtener(i).getLaboratorio(), amed.obtener(i).getPrecioUnitario(), amed.obtener(i).getStock() };
+			modelo.addRow(fila);
+		}
+		;
+
+	}
+
+	int leerCodigo() {
+		return Integer.parseInt(txtCodigo.getText().trim());
+	}
+
+	String leerNombre() {
+		return txtNombre.getText().trim();
+	}
+
+	String leerLaboratorio() {
+		return txtLaboratorio.getText().trim();
+	}
+
+	int leerStock() {
+		return Integer.parseInt(txtStock.getText().trim());
+	}
+
+	double leerPrecioUnitario() {
+		return Double.parseDouble(txtPrecioUnitario.getText().trim());
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == tblmed) {
+			mouseClickedTable(e);
+		}
+	}
+
+	protected void mouseClickedTable(MouseEvent e) {
+		habilitarEntradas(true);
+		editarFila();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
 
 	}
 }

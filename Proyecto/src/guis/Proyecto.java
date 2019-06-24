@@ -7,8 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Arreglo.ArregloCama;
-
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
@@ -56,8 +54,7 @@ public class Proyecto extends JFrame implements ActionListener {
 	/**
 	 * Launch the application.
 	 */
-	
-	public static ArregloCama ac=new ArregloCama();
+
 	private JMenu mnMantenimiento;
 	private JMenuItem mntmCama;
 	private JMenuItem mntmPaciente;
@@ -70,7 +67,8 @@ public class Proyecto extends JFrame implements ActionListener {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
-	
+	private JLabel lblProyectoClinica;
+
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -98,137 +96,144 @@ public class Proyecto extends JFrame implements ActionListener {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Proyecto.class.getResource("/img/TriCell.jpg")));
 		setTitle("Proyecto de atenci\u00F3n al cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 400);
-		
+		setBounds(100, 100, 433, 312);
+
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		mnArchivo = new JMenu("Archivo");
 		mnArchivo.setHorizontalAlignment(SwingConstants.LEFT);
 		menuBar.add(mnArchivo);
-		
+
 		mntmSalir = new JMenuItem("Salir");
 		mntmSalir.setBackground(Color.LIGHT_GRAY);
-		mntmSalir.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\logout.jpg"));
+		mntmSalir.setIcon(new ImageIcon(Proyecto.class.getResource("/img/logout.jpg")));
 		mntmSalir.addActionListener(this);
 		mnArchivo.add(mntmSalir);
-		
+
 		mnMantenimiento = new JMenu("Mantenimiento");
 		menuBar.add(mnMantenimiento);
-		
+
 		mntmCama = new JMenuItem("Cama");
-		mntmCama.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\agregarcama.jpg"));
+		mntmCama.setIcon(new ImageIcon(Proyecto.class.getResource("/img/agregarcama.jpg")));
 		mntmCama.addActionListener(this);
 		mnMantenimiento.add(mntmCama);
-		
+
 		mntmPaciente = new JMenuItem("Paciente");
 		mntmPaciente.addActionListener(this);
-		mntmPaciente.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\paciente.png"));
+		mntmPaciente.setIcon(new ImageIcon(Proyecto.class.getResource("/img/paciente internado.png")));
 		mnMantenimiento.add(mntmPaciente);
-		
+
 		mntmMedicina = new JMenuItem("Medicina");
 		mntmMedicina.addActionListener(this);
-		mntmMedicina.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\medicina.jpg"));
+		mntmMedicina.setIcon(new ImageIcon(Proyecto.class.getResource("/img/medicina.jpg")));
 		mnMantenimiento.add(mntmMedicina);
-		
+
 		mnRegistro = new JMenu("Registro");
 		menuBar.add(mnRegistro);
-		
+
 		mntmConsul = new JMenuItem("Consultas");
-		mntmConsul.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\consulta.png"));
+		mntmConsul.setIcon(new ImageIcon(Proyecto.class.getResource("/img/consulta.png")));
 		mntmConsul.addActionListener(this);
 		mnRegistro.add(mntmConsul);
-		
+
 		mntmInter = new JMenuItem("Internamientos");
-		mntmInter.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\hospital_int.jpg"));
+		mntmInter.setIcon(new ImageIcon(Proyecto.class.getResource("/img/hospital_int.jpg")));
 		mntmInter.addActionListener(this);
 		mnRegistro.add(mntmInter);
-		
+
 		mnPago = new JMenu("Pago");
 		menuBar.add(mnPago);
-		
+
 		mntmCon = new JMenuItem("Consultas");
-		mntmCon.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\consulta.png"));
+		mntmCon.setIcon(new ImageIcon(Proyecto.class.getResource("/img/consulta.png")));
 		mntmCon.addActionListener(this);
 		mnPago.add(mntmCon);
-		
+
 		mntmInt = new JMenuItem("Internamientos");
-		mntmInt.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\hospital_int.jpg"));
+		mntmInt.setIcon(new ImageIcon(Proyecto.class.getResource("/img/hospital_int.jpg")));
 		mntmInt.addActionListener(this);
 		mnPago.add(mntmInt);
-		
+
 		mnReporte = new JMenu("Reporte");
 		menuBar.add(mnReporte);
-		
+
 		mntmConPen = new JMenuItem("Consultas-Pendientes");
-		mntmConPen.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\consulta.png"));
+		mntmConPen.setIcon(new ImageIcon(Proyecto.class.getResource("/img/consulta.png")));
 		mntmConPen.addActionListener(this);
 		mnReporte.add(mntmConPen);
-		
+
 		mntmConPag = new JMenuItem("Consultas-Pagadas");
-		mntmConPag.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\consulta.png"));
+		mntmConPag.setIcon(new ImageIcon(Proyecto.class.getResource("/img/consulta.png")));
 		mntmConPag.addActionListener(this);
 		mnReporte.add(mntmConPag);
-		
+
 		mntmIntPen = new JMenuItem("Internamientos-Pendientes");
-		mntmIntPen.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\hospital.jpg"));
+		mntmIntPen.setIcon(new ImageIcon(Proyecto.class.getResource("/img/hospital.jpg")));
 		mntmIntPen.addActionListener(this);
 		mnReporte.add(mntmIntPen);
-		
+
 		mntmIntPag = new JMenuItem("Internamientos-Pagados");
-		mntmIntPag.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\hospital_pag.jpg"));
+		mntmIntPag.setIcon(new ImageIcon(Proyecto.class.getResource("/img/hospital_pag.jpg")));
 		mntmIntPag.addActionListener(this);
 		mnReporte.add(mntmIntPag);
-		
+
 		mnIntegrantes = new JMenu("Integrantes:");
 		menuBar.add(mnIntegrantes);
-		
+
 		menuItem_1 = new JMenuItem("Brian Veliz");
 		menuItem_1.addActionListener(this);
-		menuItem_1.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\hombre.jpg"));
+		menuItem_1.setIcon(new ImageIcon(Proyecto.class.getResource("/img/hombre.jpg")));
 		mnIntegrantes.add(menuItem_1);
-		
+
 		mntmKamalyZapana_1 = new JMenuItem("Kamaly Zapana");
 		mntmKamalyZapana_1.addActionListener(this);
-		mntmKamalyZapana_1.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\mujer.jpg"));
-		mntmKamalyZapana_1.setSelectedIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\mujer.jpg"));
+		mntmKamalyZapana_1.setIcon(new ImageIcon(Proyecto.class.getResource("/img/mujer.jpg")));
+		mntmKamalyZapana_1.setSelectedIcon(
+				new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\mujer.jpg"));
 		mnIntegrantes.add(mntmKamalyZapana_1);
-		
+
 		mntmBrianVeliz = new JMenuItem("Jorge Quispe");
 		mntmBrianVeliz.addActionListener(this);
-		mntmBrianVeliz.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\hombre-de-negocios.jpg"));
+		mntmBrianVeliz.setIcon(new ImageIcon(Proyecto.class.getResource("/img/hombre-de-negocios.jpg")));
 		mnIntegrantes.add(mntmBrianVeliz);
-		
+
 		mntmKamalyZapana = new JMenuItem("Fernando Padilla");
 		mntmKamalyZapana.addActionListener(this);
-		mntmKamalyZapana.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\estudiante.jpg"));
+		mntmKamalyZapana.setIcon(new ImageIcon(Proyecto.class.getResource("/img/estudiante.jpg")));
 		mnIntegrantes.add(mntmKamalyZapana);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
+		lblProyectoClinica = new JLabel("PROYECTO CLINICA 2019");
+		lblProyectoClinica.setForeground(new Color(189, 183, 107));
+		lblProyectoClinica.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProyectoClinica.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblProyectoClinica.setBounds(0, 199, 395, 52);
+		contentPane.add(lblProyectoClinica);
+
 		label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\instagram.png"));
+		label_3.setIcon(new ImageIcon(Proyecto.class.getResource("/img/instagram.png")));
 		label_3.setBounds(603, 299, 40, 40);
 		contentPane.add(label_3);
-		
+
 		label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\gorjeo.jpg"));
+		label_2.setIcon(new ImageIcon(Proyecto.class.getResource("/img/gorjeo.jpg")));
 		label_2.setBounds(553, 299, 40, 40);
 		contentPane.add(label_2);
-		
+
 		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\fb.png"));
+		label_1.setIcon(new ImageIcon(Proyecto.class.getResource("/img/facebook.jpg")));
 		label_1.setBounds(503, 299, 40, 40);
 		contentPane.add(label_1);
-		
+
 		label = new JLabel("");
-		label.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\clinica-bautista.jpg"));
-		label.setBounds(0, 0, 654, 350);
+		label.setIcon(new ImageIcon(Proyecto.class.getResource("/img/banner.jpg")));
+		label.setBounds(0, 0, 427, 198);
 		contentPane.add(label);
 	}
-
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
@@ -237,16 +242,19 @@ public class Proyecto extends JFrame implements ActionListener {
 					showMenu(e);
 				}
 			}
+
 			public void mouseReleased(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					showMenu(e);
 				}
 			}
+
 			private void showMenu(MouseEvent e) {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
 	}
+
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == mntmMedicina) {
 			actionPerformedMntmMedicina(arg0);
@@ -297,111 +305,118 @@ public class Proyecto extends JFrame implements ActionListener {
 			actionPerformedMntmSalir(arg0);
 		}
 	}
+
 	protected void actionPerformedMntmSalir(ActionEvent arg0) {
 		System.exit(0);
 	}
+
 	protected void actionPerformedMntmConsul(ActionEvent arg0) {
-			DlgRConsultas dRC = new DlgRConsultas();
-			dRC.setLocationRelativeTo(this);
-			dRC.setVisible(true);
-			
+		DlgRConsultas dRC = new DlgRConsultas();
+		dRC.setLocationRelativeTo(this);
+		dRC.setVisible(true);
+
 	}
+
 	protected void actionPerformedMntmInter(ActionEvent arg0) {
-			DlgRInternamientos dRI = new DlgRInternamientos();
-			dRI.setLocationRelativeTo(this);
-			dRI.setVisible(true);
-			
+		DlgRInternamientos dRI = new DlgRInternamientos();
+		dRI.setLocationRelativeTo(this);
+		dRI.setVisible(true);
+
 	}
+
 	protected void actionPerformedMntmCon(ActionEvent arg0) {
 		DlgPConsultas dPC = new DlgPConsultas();
-			dPC.setLocationRelativeTo(this);
-			dPC.setVisible(true);
-		
+		dPC.setLocationRelativeTo(this);
+		dPC.setVisible(true);
+
 	}
+
 	protected void actionPerformedMntmInt(ActionEvent arg0) {
 		DlgPInternamientos dPI = new DlgPInternamientos();
-			dPI.setLocationRelativeTo(this);
-			dPI.setVisible(true);
-			}
-	
+		dPI.setLocationRelativeTo(this);
+		dPI.setVisible(true);
+	}
+
 	protected void actionPerformedMntmConPen(ActionEvent arg0) {
 		DlgRepConsultasPendientes dCP = new DlgRepConsultasPendientes();
-			dCP.setLocationRelativeTo(this);
-			dCP.setVisible(true);
-			
+		dCP.setLocationRelativeTo(this);
+		dCP.setVisible(true);
+
 	}
+
 	protected void actionPerformedMntmConPag(ActionEvent arg0) {
 		DlgRepConsultasPagadas dCP = new DlgRepConsultasPagadas();
-			dCP.setLocationRelativeTo(this);
-			dCP.setVisible(true);
-			
+		dCP.setLocationRelativeTo(this);
+		dCP.setVisible(true);
+
 	}
+
 	protected void actionPerformedMntmIntPen(ActionEvent arg0) {
 		DlgRepInternamientosPendientes dIP = new DlgRepInternamientosPendientes();
 		dIP.setLocationRelativeTo(this);
 		dIP.setVisible(true);
-	
+
 	}
+
 	protected void actionPerformedMntmIntPag(ActionEvent arg0) {
 		DlgRepInternamientosPagados dIP = new DlgRepInternamientosPagados();
 		dIP.setLocationRelativeTo(this);
 		dIP.setVisible(true);
-	
+
 	}
+
 	protected void actionPerformedMntmCama(ActionEvent arg0) {
 		DlgCama dac = new DlgCama();
 		dac.setLocationRelativeTo(this);
 		dac.setVisible(true);
 	}
+
 	protected void actionPerformedMenuItem_1(ActionEvent arg0) {
-		JOptionPane.showMessageDialog(null,"\n*********************************"
-				+ "\n Estudiante de la carrera:"
-				+ "\n Computación y Sistemas en cibertec."
-				+ "\n Encargado: Área de diseño para 'Clinica Bautista'."
-				+ "\n Email: brian.veliz@outlook.com"
-				+ "\n Celular: 943472892."
-				+ "\n*********************************");
-		
+		JOptionPane.showMessageDialog(null,
+				"\n*********************************" + "\n Estudiante de la carrera:"
+						+ "\n Computación y Sistemas en cibertec."
+						+ "\n Encargado: Área de diseño para 'Clinica Bautista'." + "\n Email: brian.veliz@outlook.com"
+						+ "\n Celular: 943472892." + "\n*********************************");
+
 	}
+
 	protected void actionPerformedMntmKamalyZapana_1(ActionEvent arg0) {
-		JOptionPane.showMessageDialog(null,"\n*********************************"
-				+ "\n Estudiante de la carrera:"
-				+ "\n Computación y Sistemas en cibertec."
-				+ "\n Encargado: Área de desarrollo y programación para la 'Clinica Bautista'."
-				+ "\n Email: kamaly.kazal@gmail.com"
-				+ "\n Celular: 930184997."
-				+ "\n*********************************");
+		JOptionPane.showMessageDialog(null,
+				"\n*********************************" + "\n Estudiante de la carrera:"
+						+ "\n Computación y Sistemas en cibertec."
+						+ "\n Encargado: Área de desarrollo y programación para la 'Clinica Bautista'."
+						+ "\n Email: kamaly.kazal@gmail.com" + "\n Celular: 930184997."
+						+ "\n*********************************");
 	}
+
 	protected void actionPerformedMntmBrianVeliz(ActionEvent arg0) {
-		JOptionPane.showMessageDialog(null,"\n*********************************"
-				+ "\n Estudiante de la carrera:"
-				+ "\n Computación y Sistemas en cibertec."
-				+ "\n Encargado: Área de coordinación y proyectos para la 'Clinica Bautista'."
-				+ "\n Email: i201716940@cibertec.edu.pe"
-				+ "\n Celular: 912903879."
-				+ "\n*********************************");
+		JOptionPane.showMessageDialog(null,
+				"\n*********************************" + "\n Estudiante de la carrera:"
+						+ "\n Computación y Sistemas en cibertec."
+						+ "\n Encargado: Área de coordinación y proyectos para la 'Clinica Bautista'."
+						+ "\n Email: i201716940@cibertec.edu.pe" + "\n Celular: 912903879."
+						+ "\n*********************************");
 	}
+
 	protected void actionPerformedMntmKamalyZapana(ActionEvent arg0) {
-		JOptionPane.showMessageDialog(null,"\n*********************************"
-				+ "\n Estudiante de la carrera:"
+		JOptionPane.showMessageDialog(null, "\n*********************************" + "\n Estudiante de la carrera:"
 				+ "\n Computación y Sistemas en cibertec."
 				+ "\n Encargado: Área de coordinación y estructura del proyecto para la 'Clinica Bautista'."
-				+ "\n Email: wariurtest@gmail.com"
-				+ "\n Celular: 980416334."
-				+ "\n*********************************");
-		
+				+ "\n Email: wariurtest@gmail.com" + "\n Celular: 980416334." + "\n*********************************");
+
 	}
+
 	protected void actionPerformedMntmPaciente(ActionEvent arg0) {
 		DlgPaciente dpac = new DlgPaciente();
 		dpac.setLocationRelativeTo(this);
 		dpac.setVisible(true);
 
-		
 	}
+
 	protected void actionPerformedMntmMedicina(ActionEvent arg0) {
 		DlgMed dmed = new DlgMed();
 		dmed.setLocationRelativeTo(this);
 		dmed.setVisible(true);
 
 	}
-	}
+}

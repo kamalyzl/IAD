@@ -1,32 +1,32 @@
 package Arreglo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
-
-import javax.swing.table.AbstractTableModel;
-
 import clase.Cama;
 
-public class ArregloCama extends AbstractTableModel {
+public class ArregloCama {
 
-	private static final long serialVersionUID = 1L;
 	ArrayList<Cama> ca;
+	private String archivo;
 
-	public ArregloCama() {
+	public ArregloCama(String archivo) {
 		ca = new ArrayList<Cama>();
+		this.archivo = archivo;
 		cargarCama();
 	}
 
-	// el tamaño del arreglo
+	public String getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(String archivo) {
+		this.archivo = archivo;
+	}
+
 	public int tamaño() {
 		return ca.size();
 	}
 
-	// posicionarme en el punto del arreglo
 	public Cama obtener(int i) {
 		return ca.get(i);
 	}
@@ -41,27 +41,29 @@ public class ArregloCama extends AbstractTableModel {
 	}
 
 	// metodo eliminar del arraylist
-	public void eliminar( Cama i) {
+	public void eliminar(Cama i) {
 		ca.remove(i);
+	}
+
+	public boolean existeArchivo() {
+		File f = new File(archivo);
+		return f.exists();
 	}
 
 	public void cargarCama() {
 		try {
 
-			//   bufferedReader lee archivos
 			BufferedReader br;
 			String linea;
 			String[] s;
 			int ncama, tcama, estado;
-			double precio;
-			br = new BufferedReader(new FileReader("cama.txt"));
+			br = new BufferedReader(new FileReader(archivo));
 			while ((linea = br.readLine()) != null) {
 				s = linea.split(";");
 				ncama = Integer.parseInt(s[0].trim());
 				tcama = Integer.parseInt(s[1].trim());
-				precio = Double.parseDouble(s[2].trim());
-				estado = Integer.parseInt(s[3].trim());
-				adicionar(new Cama(ncama, tcama, precio, estado));
+				estado = Integer.parseInt(s[2].trim());
+				adicionar(new Cama(ncama, tcama, estado));
 			}
 			br.close();
 		} catch (Exception e) {
@@ -70,18 +72,13 @@ public class ArregloCama extends AbstractTableModel {
 
 	public void grabarCama() {
 		try {
-
-			// import del printWriter para escribir y obtener los elementos generados
-			// ¿Para que sirve PrintWriter? ¿De que biblioteca es? java.io
 			PrintWriter pw;
 			String linea;
 			Cama x;
-			// import del FileWriter para escribir y obtener los elementos generados
-			// ¿Para que sirve FileWriter? ¿De que biblioteca es? java.io rpta
-			pw = new PrintWriter(new FileWriter("cama.txt"));
+			pw = new PrintWriter(new FileWriter(archivo));
 			for (int i = 0; i < tamaño(); i++) {
 				x = obtener(i);
-				linea = x.getNcama() + ";" + x.getCategoria() + ";" + x.getPrecio() + ";" + x.getEstado();
+				linea = x.getNcama() + ";" + x.getCategoria() + ";" + x.getEstado();
 				pw.println(linea);
 			}
 			pw.close();
@@ -96,26 +93,21 @@ public class ArregloCama extends AbstractTableModel {
 				return obtener(i);
 		return null;
 	}
-	// VALIDAR archivos para guardado
 
-	public boolean existeArchivo() {
-		File f = new File("cama.txt");
-		return f.exists();
+	public int camaDisponible() {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).detalleEstado() == "Libre") {
+				return obtener(i).getNcama();
+			}
+		}
+		return 101;
 	}
 
-	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public Object getValueAt(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	public int codigoCorrelativo() {
+		if (tamaño() == 0)
+			return 100001;
+		else
+			return obtener(tamaño() - 1).getNcama() + 1;
 	}
 
 }

@@ -1,0 +1,214 @@
+package guis;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.Toolkit;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
+
+public class DlgPaciente extends JDialog implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel panel;
+	private JLabel lblNombre;
+	private JLabel lblApellido;
+	private JLabel lblTelefono;
+	private JLabel lblDni;
+	private JTextField txtnom;
+	private JTextField txtape;
+	private static DefaultTableModel modelo;
+	private JTextField txttel;
+	private JTextField txtdni;
+	private JScrollPane scrollPane;
+	private JTable tblpac;
+	private JButton btnAdicionar;
+	private JButton btnConsultar;
+	private JButton btnModificar;
+	private JButton btnEliminar;
+	private JButton btnListar;
+	private JTextField txtcod;
+	private JLabel lblCdigo;
+	private JLabel lblelCdigoDe;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgPaciente dialog = new DlgPaciente();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgPaciente() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgPaciente.class.getResource("/img/paciente internado.png")));
+		setTitle("Pacientes");
+		setBounds(100, 100, 603, 338);
+		getContentPane().setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(0, 0, 580, 295);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		lblNombre = new JLabel("Nombres:");
+		lblNombre.setBounds(10, 126, 108, 14);
+		panel.add(lblNombre);
+		
+		lblApellido = new JLabel("Apellidos:");
+		lblApellido.setBounds(10, 151, 108, 14);
+		panel.add(lblApellido);
+		
+		lblTelefono = new JLabel("Tel\u00E9fono:");
+		lblTelefono.setBounds(10, 176, 108, 14);
+		panel.add(lblTelefono);
+		
+		lblDni = new JLabel("D.I:");
+		lblDni.setBounds(10, 201, 46, 14);
+		panel.add(lblDni);
+		
+		txtnom = new JTextField();
+		txtnom.setForeground(Color.WHITE);
+		txtnom.setBackground(Color.LIGHT_GRAY);
+		txtnom.setBounds(77, 123, 122, 20);
+		panel.add(txtnom);
+		txtnom.setColumns(10);
+		
+		txtape = new JTextField();
+		txtape.setForeground(Color.WHITE);
+		txtape.setBackground(Color.LIGHT_GRAY);
+		txtape.setColumns(10);
+		txtape.setBounds(77, 148, 122, 20);
+		panel.add(txtape);
+		
+		
+		
+		txttel = new JTextField();
+		txttel.setBackground(Color.LIGHT_GRAY);
+		txttel.setForeground(Color.WHITE);
+		txttel.setColumns(10);
+		txttel.setBounds(77, 173, 122, 20);
+		panel.add(txttel);
+		
+		txtdni = new JTextField();
+		txtdni.setForeground(Color.WHITE);
+		txtdni.setBackground(Color.LIGHT_GRAY);
+		txtdni.setColumns(10);
+		txtdni.setBounds(77, 198, 122, 20);
+		panel.add(txtdni);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(209, 93, 361, 184);
+		panel.add(scrollPane);
+		
+		tblpac = new JTable();
+		tblpac.setBackground(Color.LIGHT_GRAY);
+		tblpac.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		tblpac.setFillsViewportHeight(true);
+		scrollPane.setViewportView(tblpac);
+		
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Código:");
+		modelo.addColumn("Nombres:");
+		modelo.addColumn("Apellidos:");
+		modelo.addColumn("D.I:");
+		
+		tblpac.setModel(modelo);
+		
+		
+		btnAdicionar = new JButton("ADICIONAR");
+		btnAdicionar.addActionListener(this);
+		btnAdicionar.setBackground(Color.WHITE);
+		btnAdicionar.setIcon(new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\ingresar.png"));
+		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnAdicionar.setBounds(261, 4, 122, 57);
+		
+		panel.add(btnAdicionar);
+		
+		btnConsultar = new JButton("CONSULTAR");
+		btnConsultar.setBackground(new Color(176, 224, 230));
+		btnConsultar.setBounds(30, 38, 118, 23);
+		panel.add(btnConsultar);
+		
+		btnModificar = new JButton("MODIFICAR");
+		btnModificar.setBackground(new Color(176, 224, 230));
+		btnModificar.setBounds(158, 38, 98, 23);
+		panel.add(btnModificar);
+		
+		btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setBackground(new Color(176, 224, 230));
+		btnEliminar.addActionListener(this);
+		btnEliminar.setBounds(30, 4, 118, 23);
+		panel.add(btnEliminar);
+		
+		btnListar = new JButton("LISTAR");
+		btnListar.setBackground(new Color(176, 224, 230));
+		btnListar.setBounds(158, 4, 98, 23);
+		panel.add(btnListar);
+		
+		txtcod = new JTextField();
+		txtcod.setForeground(Color.WHITE);
+		txtcod.setBackground(new Color(0, 206, 209));
+		txtcod.setBounds(77, 95, 60, 20);
+		panel.add(txtcod);
+		txtcod.setColumns(10);
+		
+		lblCdigo = new JLabel("C\u00F3digo:");
+		lblCdigo.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblCdigo.setBounds(10, 94, 57, 21);
+		panel.add(lblCdigo);
+		
+		lblelCdigoDe = new JLabel("(*)El c\u00F3digo de paciente comienza con 'i' luego son n\u00FAmeros");
+		lblelCdigoDe.setForeground(Color.RED);
+		lblelCdigoDe.setBounds(30, 63, 353, 20);
+		panel.add(lblelCdigoDe);
+		
+		textField = new JTextField();
+		textField.setBackground(new Color(72, 209, 204));
+		textField.setBounds(0, 0, 580, 83);
+		panel.add(textField);
+		textField.setColumns(10);
+
+	}
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnAdicionar) {
+			actionPerformedBtnAdicionar(arg0);
+		}
+		if (arg0.getSource() == btnEliminar) {
+			actionPerformedBtnEliminar(arg0);
+		}
+	}
+	protected void actionPerformedBtnEliminar(ActionEvent arg0) {
+	}
+	protected void actionPerformedBtnAdicionar(ActionEvent arg0) {
+	}
+}

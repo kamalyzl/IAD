@@ -6,7 +6,7 @@ public class Medicina {
 	private String nombre, laboratorio;
 	private double precioUnitario;
 
-	public Medicina(int codigoMedicina, int stock, String nombre, String laboratorio, double precioUnitario) {
+	public Medicina(int codigoMedicina, String nombre, String laboratorio, double precioUnitario, int stock) {
 		this.codigoMedicina = codigoMedicina;
 		this.stock = stock;
 		this.nombre = nombre;

@@ -1,0 +1,50 @@
+package guis;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import java.awt.Toolkit;
+import javax.swing.JTable;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+
+public class DlgRConsultas extends JDialog {
+	private JPanel panel;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgRConsultas dialog = new DlgRConsultas();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgRConsultas() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgRConsultas.class.getResource("/img/TriCell.jpg")));
+		setTitle("Consultas Medicas");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBounds(0, 0, 434, 261);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+
+	}
+}

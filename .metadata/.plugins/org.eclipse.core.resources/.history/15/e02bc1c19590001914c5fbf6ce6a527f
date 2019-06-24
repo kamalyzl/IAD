@@ -1,0 +1,157 @@
+package guis;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
+public class DlgRInternamientos extends JDialog {
+	private JLabel lblCama;
+	private JComboBox comboBox;
+	private JLabel lblGenerarCodigoCorrelativo;
+	private JLabel lblLlamarALas;
+	private JLabel lblFechaDeIngreso;
+	private JComboBox comboBox_1;
+	private JComboBox comboBox_2;
+	private JComboBox comboBox_3;
+	private JLabel lblEstado;
+	private JComboBox comboBox_4;
+	private JLabel lblInternado;
+	private JLabel lblEstadoDeLa;
+	private JComboBox comboBox_5;
+	private static DefaultTableModel modelo;
+	private JLabel lblFijarElEstado;
+	private JScrollPane scrollPane;
+	private JTable tblrint;
+	private JButton btnRegistrar;
+	private JButton btnEliminar;
+	private JButton btnModificar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgRInternamientos dialog = new DlgRInternamientos();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgRInternamientos() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgRInternamientos.class.getResource("/img/TriCell.jpg")));
+		setTitle("Internamientos");
+		setBounds(100, 100, 600, 380);
+		getContentPane().setLayout(null);
+		
+		lblCama = new JLabel("Cama:");
+		lblCama.setBounds(10, 36, 134, 23);
+		getContentPane().add(lblCama);
+		
+		comboBox = new JComboBox();
+		comboBox.setBounds(184, 36, 86, 20);
+		getContentPane().add(comboBox);
+		
+		lblGenerarCodigoCorrelativo = new JLabel("GENERAR CODIGO CORRELATIVO");
+		lblGenerarCodigoCorrelativo.setBounds(10, 11, 217, 14);
+		getContentPane().add(lblGenerarCodigoCorrelativo);
+		
+		lblLlamarALas = new JLabel("Llamar a las camas libres del cbobox");
+		lblLlamarALas.setBounds(184, 11, 217, 14);
+		getContentPane().add(lblLlamarALas);
+		
+		lblFechaDeIngreso = new JLabel("Fecha de Ingreso:");
+		lblFechaDeIngreso.setBounds(10, 70, 111, 14);
+		getContentPane().add(lblFechaDeIngreso);
+		
+		comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(170, 65, 50, 20);
+		getContentPane().add(comboBox_1);
+		
+		comboBox_2 = new JComboBox();
+		comboBox_2.setBounds(220, 65, 50, 20);
+		getContentPane().add(comboBox_2);
+		
+		comboBox_3 = new JComboBox();
+		comboBox_3.setBounds(270, 65, 50, 20);
+		getContentPane().add(comboBox_3);
+		
+		lblEstado = new JLabel("Estado Internamiento:");
+		lblEstado.setBounds(10, 95, 134, 14);
+		getContentPane().add(lblEstado);
+		
+		comboBox_4 = new JComboBox();
+		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Internado", "Alta"}));
+		comboBox_4.setBounds(184, 95, 86, 20);
+		getContentPane().add(comboBox_4);
+		
+		lblInternado = new JLabel("0 internado");
+		lblInternado.setBounds(307, 120, 174, 14);
+		getContentPane().add(lblInternado);
+		
+		lblEstadoDeLa = new JLabel("Estado Cama:");
+		lblEstadoDeLa.setBounds(10, 120, 134, 14);
+		getContentPane().add(lblEstadoDeLa);
+		
+		comboBox_5 = new JComboBox();
+		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"Libre", "Ocupado"}));
+		comboBox_5.setBounds(184, 126, 86, 20);
+		getContentPane().add(comboBox_5);
+		
+		lblFijarElEstado = new JLabel("fijar el estado de la cama en 1 ocupado");
+		lblFijarElEstado.setBounds(307, 135, 237, 14);
+		getContentPane().add(lblFijarElEstado);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 157, 564, 173);
+		getContentPane().add(scrollPane);
+		
+		tblrint = new JTable();
+		scrollPane.setViewportView(tblrint);
+		
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Código:");
+		modelo.addColumn("Fecha de ingreso:");
+		modelo.addColumn("Estado de internamiento:");
+		modelo.addColumn("Estado de cama:");
+		
+		
+		tblrint.setModel(modelo);
+		
+		btnRegistrar = new JButton("");
+		btnRegistrar.setIcon(new ImageIcon(DlgRInternamientos.class.getResource("/img/registrar.png")));
+		btnRegistrar.setBounds(350, 36, 86, 20);
+		getContentPane().add(btnRegistrar);
+		
+		btnEliminar = new JButton("");
+		btnEliminar.setIcon(new ImageIcon(DlgRInternamientos.class.getResource("/img/eliminar.png")));
+		btnEliminar.setBounds(350, 56, 86, 20);
+		getContentPane().add(btnEliminar);
+		
+		btnModificar = new JButton("");
+		btnModificar.setIcon(new ImageIcon(DlgRInternamientos.class.getResource("/img/modificar.png")));
+		btnModificar.setBounds(350, 76, 86, 20);
+		getContentPane().add(btnModificar);
+		
+		
+
+	}
+}

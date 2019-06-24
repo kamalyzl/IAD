@@ -11,14 +11,23 @@ import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
 
 public class DlgPConsultas extends JDialog {
 	private JLabel lblPago;
 	private JButton btnConsultar;
-	private JButton btnSalir;
 	private JComboBox comboBox;
 	private JPanel panel;
 	private JScrollPane scrollPane;
+	private JTextField textField;
+	private JLabel lblEstadoDeLa;
+	private JComboBox comboBox_1;
+	private JTable tblpcon;
+	private static DefaultTableModel modelo;
 
 	/**
 	 * Launch the application.
@@ -51,29 +60,53 @@ public class DlgPConsultas extends JDialog {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		lblPago = new JLabel("Pago:");
-		lblPago.setBounds(10, 6, 60, 22);
+		comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(191, 36, 96, 20);
+		panel.add(comboBox_1);
+		
+		lblEstadoDeLa = new JLabel("Estado:");
+		lblEstadoDeLa.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEstadoDeLa.setBounds(85, 33, 96, 26);
+		panel.add(lblEstadoDeLa);
+		
+		lblPago = new JLabel("C\u00F3digo:");
+		lblPago.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPago.setBounds(85, 5, 96, 22);
 		panel.add(lblPago);
 		lblPago.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
-		btnConsultar = new JButton("Consultar");
-		btnConsultar.setBounds(208, 5, 109, 23);
+		btnConsultar = new JButton("");
+		btnConsultar.setIcon(new ImageIcon(DlgPConsultas.class.getResource("/img/consulta.png")));
+		btnConsultar.setBounds(297, 5, 53, 50);
 		panel.add(btnConsultar);
 		btnConsultar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		btnSalir = new JButton("salir");
-		btnSalir.setBounds(321, 5, 89, 23);
-		panel.add(btnSalir);
-		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
 		comboBox = new JComboBox();
-		comboBox.setBounds(74, 8, 127, 20);
+		comboBox.setBounds(191, 5, 96, 20);
 		panel.add(comboBox);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 39, 400, 200);
+		scrollPane.setBounds(0, 65, 434, 174);
 		panel.add(scrollPane);
+		
+		tblpcon = new JTable();
+		tblpcon.setBackground(Color.GRAY);
+		scrollPane.setViewportView(tblpcon);
+		
+		
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Código de consulta:");
+		modelo.addColumn("Detalle de la receta:");
+		modelo.addColumn("Total a pagar:");
+		tblpcon.setModel(modelo);
+
+		
+		textField = new JTextField();
+		textField.setBackground(new Color(210, 180, 140));
+		textField.setEditable(false);
+		textField.setBounds(0, 0, 438, 65);
+		panel.add(textField);
+		textField.setColumns(10);
 
 	}
-
 }

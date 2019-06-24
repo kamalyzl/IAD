@@ -1,0 +1,112 @@
+package Arreglo;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import clase.Medicina;;
+
+public class ArregloMedicina {
+
+	// private static final long serialVersionUID = 1L;
+	ArrayList<Medicina> cm;
+	private String archivo;
+
+	public ArregloMedicina(String archivo) {
+		cm = new ArrayList<Medicina>();
+		this.archivo = archivo;
+		cargarMedicina();
+	}
+
+	public String getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(String archivo) {
+		this.archivo = archivo;
+	}
+
+	public int tamaño() {
+		return cm.size();
+	}
+
+	public Medicina obtener(int i) {
+		return cm.get(i);
+	}
+
+	public void adicionar(Medicina x) {
+		cm.add(x);
+	}
+
+	// cambiar los elementos dentro del arraylist
+	public void modificar(int i, Medicina x) {
+		cm.set(i, x);
+	}
+
+	// metodo eliminar del arraylist
+	public void eliminar(Medicina i) {
+		cm.remove(i);
+	}
+
+	public boolean existeArchivo() {
+		File f = new File(archivo);
+		return f.exists();
+	}
+
+	public void cargarMedicina() {
+		try {
+
+			BufferedReader br;
+			int codigoMedicina, stock;
+			String linea, nombre, laboratorio;
+			double precio;
+			String[] s;
+			int ncama, tcama, estado;
+			br = new BufferedReader(new FileReader(archivo));
+			while ((linea = br.readLine()) != null) {
+				s = linea.split(";");
+				ncama = Integer.parseInt(s[0].trim());
+				tcama = Integer.parseInt(s[1].trim());
+				estado = Integer.parseInt(s[2].trim());
+				adicionar(new Medicina(codigoMedicina, nombre, laboratorio, precio, stock));
+			}
+			br.close();
+		} catch (Exception e) {
+		}
+	}
+
+	public void grabarCama() {
+		try {
+			PrintWriter pw;
+			String linea;
+			Medicina x;
+			pw = new PrintWriter(new FileWriter(archivo));
+			for (int i = 0; i < tamaño(); i++) {
+				x = obtener(i);
+				linea = x.getNcama() + ";" + x.getCategoria() + ";" + x.getEstado();
+				pw.println(linea);
+			}
+			pw.close();
+		} catch (Exception e) {
+		}
+	}
+
+	// Metodo de búsqueda
+	public Medicina buscar(int codigoMedicina) {
+		for (int i = 0; i < tamaño(); i++)
+			if (obtener(i).getCodigoMedicina() == codigoMedicina)
+				return obtener(i);
+		return null;
+	}
+
+	public int codigoCorrelativo() {
+		if (tamaño() == 0)
+			return 100001;
+		else
+			return obtener(tamaño() - 1).getCodigoMedicina() + 1;
+	}
+
+}
