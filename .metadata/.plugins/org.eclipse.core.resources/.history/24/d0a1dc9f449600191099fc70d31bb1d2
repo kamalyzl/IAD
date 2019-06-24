@@ -348,19 +348,6 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 	}
 
 	protected void actionPerformedBtnModificar(ActionEvent arg0) {
-		try {
-			int codigo = leercodigo();
-			Paciente a = ap.buscar(codigo);
-			if (a == null)
-				mensaje("Selecciona un registro");
-			else {
-				habilitarEntradas(true);
-			}
-
-		} catch (Exception e1) {
-			mensaje("Selecciona un registro");
-
-		}
 	}
 
 	protected void actionPerformedBtnListar(ActionEvent arg0) {

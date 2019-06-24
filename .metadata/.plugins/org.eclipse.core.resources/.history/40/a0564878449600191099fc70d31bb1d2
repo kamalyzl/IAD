@@ -264,18 +264,10 @@ public class DlgCama extends JDialog implements ActionListener, MouseListener {
 	}
 
 	protected void actionPerformedBtnModificar(ActionEvent arg0) {
-		try {
-			int codigo = leerNumCama();
-			Cama a = ac.buscar(codigo);
-			if (a == null)
-				mensaje("Selecciona un registro");
-			else {
-				habilitarEntradas(true);
-			}
-
-		} catch (Exception e1) {
-			mensaje("Selecciona un registro");
-
+		if (txtCama.getText().trim().length() < 1) {
+			mensaje("Debe seleccionar un registro para poder eliminarlo");
+		} else {
+			habilitarEntradas(true);
 		}
 
 	}
