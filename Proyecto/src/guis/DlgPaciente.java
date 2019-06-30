@@ -163,7 +163,7 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 		modelo.addColumn("Nombres:");
 		modelo.addColumn("Apellidos:");
 		modelo.addColumn("Telefono:");
-		modelo.addColumn("D.I:");
+		modelo.addColumn("DNI:");
 
 		tblpac.setModel(modelo);
 

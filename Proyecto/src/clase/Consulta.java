@@ -6,6 +6,16 @@ public class Consulta {
 	private double totalPagar;
 	private int estado;
 
+	public Consulta(int codigoConsulta, int codigoPaciente, String fechaAtencion, String horaAtencion,
+			double totalPagar, int estado) {
+		this.codigoConsulta = codigoConsulta;
+		this.codigoPaciente = codigoPaciente;
+		this.fechaAtencion = fechaAtencion;
+		this.horaAtencion = horaAtencion;
+		this.totalPagar = totalPagar;
+		this.estado = estado;
+	}
+
 	public int getCodigoConsulta() {
 		return codigoConsulta;
 	}
@@ -54,4 +64,13 @@ public class Consulta {
 		this.estado = estado;
 	}
 
+	// elegimos las opciones para estado
+	public String detalleEstado() {
+		switch (estado) {
+		case 0:
+			return "Atencion";
+		default:
+			return "Pagada";
+		}
+	}
 }

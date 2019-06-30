@@ -58,7 +58,7 @@ public class ArregloPaciente {
 		}
 	}
 
-	public void grabarCama() {
+	public void grabarPaciente() {
 		try {
 			PrintWriter pw;
 			String linea;

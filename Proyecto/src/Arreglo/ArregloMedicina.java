@@ -74,7 +74,7 @@ public class ArregloMedicina {
 		}
 	}
 
-	public void grabarCama() {
+	public void grabarMedicina() {
 		try {
 			PrintWriter pw;
 			String linea;
