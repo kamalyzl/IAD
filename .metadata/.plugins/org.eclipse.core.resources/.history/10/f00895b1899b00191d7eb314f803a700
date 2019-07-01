@@ -1,0 +1,9 @@
+package Arreglo;
+
+import clase.Internamiento;
+
+public class ArregloInternamiento {
+	private ArrayList<Internamiento> inter;
+	private String archivo;
+
+}

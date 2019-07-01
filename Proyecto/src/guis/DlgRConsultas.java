@@ -30,6 +30,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.UIManager;
 
 public class DlgRConsultas extends JDialog implements ActionListener {
 	/**
@@ -51,11 +52,17 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 	private JButton btnSeleccionar;
 	static JTextField txtPaciente;
 	private JButton btnAdicionar;
+	private JButton btnAceptar;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -166,7 +173,7 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 	}
 
 	ArregloConsulta ac = new ArregloConsulta("consulta.txt");
-	private JButton btnAceptar;
+
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btnAceptar) {
@@ -236,7 +243,7 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 
 	String obtenerHora() {
 		Date d = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("hh/mm/ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 		return sdf.format(d);
 	}
 

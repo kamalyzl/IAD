@@ -1,0 +1,187 @@
+package guis;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+public class DlgRInternamientos extends JDialog {
+	private JLabel lblEstado;
+	private JComboBox comboBox_4;
+	private JLabel lblEstadoDeLa;
+	private JComboBox comboBox_5;
+	private static DefaultTableModel modelo;
+	private JScrollPane scrollPane;
+	private JTable tblrint;
+	private JButton btnRegistrar;
+	private JButton btnEliminar;
+	private JButton btnModificar;
+	private JTextField textField;
+	private JLabel label;
+	private JTextField txtInternamientos;
+	private JTextField txtCama;
+	private JButton btnCama;
+	private JTextField txtCodInternamiento;
+	private JLabel lblCdigo;
+	private JLabel lblTotal;
+	private JTextField txtTotal;
+	private JButton btnPaciente;
+	private JTextField txtPaciente;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgRInternamientos dialog = new DlgRInternamientos();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgRInternamientos() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgRInternamientos.class.getResource("/img/registrar.png")));
+		setTitle("Internamientos");
+		setBounds(100, 100, 600, 632);
+		getContentPane().setLayout(null);
+		
+		lblEstado = new JLabel("Estado Internamiento:");
+		lblEstado.setFont(new Font("Georgia", Font.PLAIN, 11));
+		lblEstado.setBounds(10, 117, 134, 20);
+		getContentPane().add(lblEstado);
+		
+		comboBox_4 = new JComboBox();
+		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Internado", "Alta"}));
+		comboBox_4.setBounds(184, 117, 86, 20);
+		getContentPane().add(comboBox_4);
+		
+		lblEstadoDeLa = new JLabel("Estado Cama:");
+		lblEstadoDeLa.setFont(new Font("Georgia", Font.PLAIN, 11));
+		lblEstadoDeLa.setBounds(10, 147, 134, 17);
+		getContentPane().add(lblEstadoDeLa);
+		
+		comboBox_5 = new JComboBox();
+		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"Ocupado", "Libre"}));
+		comboBox_5.setBounds(184, 147, 86, 20);
+		getContentPane().add(comboBox_5);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 251, 564, 173);
+		getContentPane().add(scrollPane);
+		
+		tblrint = new JTable();
+		scrollPane.setViewportView(tblrint);
+		
+		modelo = new DefaultTableModel();
+		modelo.addColumn("Código:");
+		modelo.addColumn("Fecha de ingreso:");
+		modelo.addColumn("Estado de internamiento:");
+		modelo.addColumn("Estado de cama:");
+		
+		
+		tblrint.setModel(modelo);
+		
+		btnRegistrar = new JButton("REG.");
+		btnRegistrar.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
+		btnRegistrar.setBackground(new Color(244, 164, 96));
+		btnRegistrar.setIcon(new ImageIcon(DlgRInternamientos.class.getResource("/img/registrar.png")));
+		btnRegistrar.setBounds(10, 196, 95, 42);
+		getContentPane().add(btnRegistrar);
+		
+		btnEliminar = new JButton("ELI.");
+		btnEliminar.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
+		btnEliminar.setBackground(new Color(244, 164, 96));
+		btnEliminar.setIcon(new ImageIcon(DlgRInternamientos.class.getResource("/img/eliminar.png")));
+		btnEliminar.setBounds(105, 196, 95, 42);
+		getContentPane().add(btnEliminar);
+		
+		btnModificar = new JButton("MOD.");
+		btnModificar.setFont(new Font("MS Reference Sans Serif", Font.PLAIN, 11));
+		btnModificar.setBackground(new Color(244, 164, 96));
+		btnModificar.setIcon(new ImageIcon(DlgRInternamientos.class.getResource("/img/modificar.png")));
+		btnModificar.setBounds(200, 196, 117, 42);
+		getContentPane().add(btnModificar);
+		
+		textField = new JTextField();
+		textField.setBackground(new Color(210, 180, 140));
+		textField.setEditable(false);
+		textField.setBounds(10, 470, 564, 115);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon(DlgRInternamientos.class.getResource("/img/hospital_int.jpg")));
+		label.setBounds(537, 196, 37, 42);
+		getContentPane().add(label);
+		
+		txtInternamientos = new JTextField();
+		txtInternamientos.setEditable(false);
+		txtInternamientos.setFont(new Font("Tahoma", Font.BOLD, 11));
+		txtInternamientos.setHorizontalAlignment(SwingConstants.CENTER);
+		txtInternamientos.setText("INTERNAMIENTOS");
+		txtInternamientos.setBackground(new Color(173, 216, 230));
+		txtInternamientos.setBounds(315, 196, 212, 42);
+		getContentPane().add(txtInternamientos);
+		txtInternamientos.setColumns(10);
+		
+		txtCama = new JTextField();
+		txtCama.setBounds(172, 82, 116, 22);
+		getContentPane().add(txtCama);
+		txtCama.setColumns(10);
+		
+		btnCama = new JButton("Cama");
+		btnCama.setBounds(10, 79, 97, 25);
+		getContentPane().add(btnCama);
+		
+		txtCodInternamiento = new JTextField();
+		txtCodInternamiento.setBounds(172, 35, 116, 22);
+		getContentPane().add(txtCodInternamiento);
+		txtCodInternamiento.setColumns(10);
+		
+		lblCdigo = new JLabel("C\u00F3digo");
+		lblCdigo.setBounds(22, 50, 56, 16);
+		getContentPane().add(lblCdigo);
+		
+		lblTotal = new JLabel("Total");
+		lblTotal.setBounds(359, 38, 56, 16);
+		getContentPane().add(lblTotal);
+		
+		txtTotal = new JTextField();
+		txtTotal.setBounds(433, 35, 116, 22);
+		getContentPane().add(txtTotal);
+		txtTotal.setColumns(10);
+		
+		btnPaciente = new JButton("Paciente");
+		btnPaciente.setBounds(344, 81, 97, 25);
+		getContentPane().add(btnPaciente);
+		
+		txtPaciente = new JTextField();
+		txtPaciente.setBounds(443, 82, 116, 22);
+		getContentPane().add(txtPaciente);
+		txtPaciente.setColumns(10);
+		
+		
+
+	}
+}

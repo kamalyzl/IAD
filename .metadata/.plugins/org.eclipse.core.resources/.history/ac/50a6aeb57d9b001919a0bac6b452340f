@@ -1,0 +1,122 @@
+package Arreglo;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import clase.Consulta;
+
+public class ArregloConsulta {
+
+	ArrayList<Consulta> con;
+	private String archivo;
+
+	public ArregloConsulta(String archivo) {
+		con = new ArrayList<Consulta>();
+		this.archivo = archivo;
+		cargarConsulta();
+	}
+
+	public String getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(String archivo) {
+		this.archivo = archivo;
+	}
+
+	public int tamaño() {
+		return con.size();
+	}
+
+	public Consulta obtener(int i) {
+		return con.get(i);
+	}
+
+	public void adicionar(Consulta x) {
+		con.add(x);
+	}
+
+	// cambiar los elementos dentro del arraylist
+	public void modificar(int i, Consulta x) {
+		con.set(i, x);
+	}
+
+	// metodo eliminar del arraylist
+	public void eliminar(Consulta i) {
+		con.remove(i);
+	}
+
+	public boolean existeArchivo() {
+		File f = new File(archivo);
+		return f.exists();
+	}
+
+	public void cargarConsulta() {
+		try {
+
+			BufferedReader br;
+			String linea, fechaAtencion, horaAtencion;
+			String[] s;
+			int codigoConsulta, codigoPaciente, estado;
+			double totalPagar;
+			br = new BufferedReader(new FileReader(archivo));
+			while ((linea = br.readLine()) != null) {
+				s = linea.split(";");
+				codigoConsulta = Integer.parseInt(s[0].trim());
+				codigoPaciente = Integer.parseInt(s[1].trim());
+				fechaAtencion = s[3].trim();
+				horaAtencion = s[4].trim();
+				totalPagar = Double.parseDouble(s[5].trim());
+				estado = Integer.parseInt(s[6].trim());
+				adicionar(
+						new Consulta(codigoConsulta, codigoPaciente, fechaAtencion, horaAtencion, totalPagar, estado));
+			}
+			br.close();
+		} catch (Exception e) {
+		}
+	}
+
+	public void grabarCama() {
+		try {
+			PrintWriter pw;
+			String linea;
+			Consulta x;
+			pw = new PrintWriter(new FileWriter(archivo));
+			for (int i = 0; i < tamaño(); i++) {
+				x = obtener(i);
+				// linea = x.getNcama() + ";" + x.getCategoria() + ";" + x.getEstado();
+				// pw.println(linea);
+			}
+			pw.close();
+		} catch (Exception e) {
+		}
+	}
+
+	// Metodo de búsqueda
+	public Consulta buscar(int num) {
+		for (int i = 0; i < tamaño(); i++)
+			if (obtener(i).getCodigoConsulta() == num)
+				return obtener(i);
+		return null;
+	}
+
+	public int camaDisponible() {
+		for (int i = 0; i < tamaño(); i++) {
+			if (obtener(i).detalleEstado() == "Libre") {
+				return obtener(i).getCodigoConsulta();
+			}
+		}
+		return 101;
+	}
+
+	public int codigoCorrelativo() {
+		if (tamaño() == 0)
+			return 400001;
+		else
+			return obtener(tamaño() - 1).getCodigoConsulta() + 1;
+	}
+}

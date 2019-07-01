@@ -80,7 +80,7 @@ public class ArregloConsulta {
 		}
 	}
 
-	public void grabarConsulta() {
+	/*public void grabarConsulta() {
 		try {
 			PrintWriter pw;
 			String linea;
@@ -95,7 +95,7 @@ public class ArregloConsulta {
 			pw.close();
 		} catch (Exception e) {
 		}
-	}
+	}*/
 
 	// Metodo de búsqueda
 	public Consulta buscar(int num) {

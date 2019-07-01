@@ -23,4 +23,7 @@
 <fullyQualifiedTypeName name="Arreglo.ArregloCama"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="clase.Paciente"/>
+<fullyQualifiedTypeName name="clase.Consulta"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="Arreglo.ArregloConsulta"/>
 </qualifiedTypeNameHistroy>

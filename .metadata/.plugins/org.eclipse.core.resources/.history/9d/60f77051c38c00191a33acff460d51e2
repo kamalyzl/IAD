@@ -1,6 +1,0 @@
-package clase;
-
-public class Internamiento {
-	private int codigoInternamiento, codigoPaciente, numeroCama;
-
-}
