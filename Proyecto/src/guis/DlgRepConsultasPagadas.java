@@ -71,11 +71,11 @@ public class DlgRepConsultasPagadas extends JDialog {
 		tblrepconpag.setModel(modelo);
 		
 		txtConsultasPendientes = new JTextField();
-		txtConsultasPendientes.setText("                     CONSULTAS                                               PENDIENTES");
+		txtConsultasPendientes.setText("                     CONSULTAS                                               PAGADAS");
 		txtConsultasPendientes.setFont(new Font("Sitka Subheading", Font.BOLD, 18));
 		txtConsultasPendientes.setEditable(false);
 		txtConsultasPendientes.setColumns(10);
-		txtConsultasPendientes.setBackground(new Color(245, 222, 179));
+		txtConsultasPendientes.setBackground(new Color(224, 255, 255));
 		txtConsultasPendientes.setBounds(0, 0, 614, 38);
 		getContentPane().add(txtConsultasPendientes);
 

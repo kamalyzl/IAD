@@ -1,0 +1,67 @@
+package guis;
+
+import java.awt.EventQueue;
+
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.SystemColor;
+import java.awt.Font;
+
+public class DlgLisConsulta extends JDialog {
+	private JPanel panel;
+	private JScrollPane scrollPane;
+	private JTable table;
+	private JButton btnAgregar;
+	private JLabel lblListaDeConsultas;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DlgLisConsulta dialog = new DlgLisConsulta();
+					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgLisConsulta() {
+		setBounds(100, 100, 450, 463);
+		
+		panel = new JPanel();
+		panel.setBackground(SystemColor.activeCaption);
+		getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 172, 397, 231);
+		panel.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		btnAgregar = new JButton("Agregar");
+		btnAgregar.setBounds(158, 104, 97, 25);
+		panel.add(btnAgregar);
+		
+		lblListaDeConsultas = new JLabel("Lista de consultas");
+		lblListaDeConsultas.setFont(new Font("Century Gothic", Font.BOLD, 16));
+		lblListaDeConsultas.setBounds(137, 32, 139, 19);
+		panel.add(lblListaDeConsultas);
+
+	}
+}

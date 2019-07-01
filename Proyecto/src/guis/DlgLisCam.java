@@ -53,26 +53,28 @@ public class DlgLisCam extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public DlgLisCam() {
-		getContentPane().setBackground(SystemColor.activeCaption);
+		getContentPane().setBackground(new Color(224, 255, 255));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgLisCam.class.getResource("/img/TriCell.jpg")));
-		setTitle("Listar Cama");
-		setBounds(100, 100, 450, 300);
+		setTitle("Lista Cama");
+		setBounds(100, 100, 450, 373);
 		getContentPane().setLayout(null);
 
 		lblListar = new JLabel("Cama");
-		lblListar.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblListar.setBounds(166, 25, 51, 22);
+		lblListar.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		lblListar.setBounds(170, 29, 55, 23);
 		getContentPane().add(lblListar);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 97, 350, 120);
+		scrollPane.setBounds(12, 128, 408, 185);
 		getContentPane().add(scrollPane);
-
-		table = new JTable();
-		table.setBackground(Color.LIGHT_GRAY);
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setFillsViewportHeight(true);
-		scrollPane.setViewportView(table);
+		
+				table = new JTable();
+				scrollPane.setViewportView(table);
+				table.setBackground(Color.LIGHT_GRAY);
+				table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				table.setFillsViewportHeight(true);
+				
+						table.setModel(modelo);
 
 		modelo = new DefaultTableModel();
 		modelo.addColumn("Número de Cama:");
@@ -80,11 +82,10 @@ public class DlgLisCam extends JDialog implements ActionListener {
 		modelo.addColumn("Precio por día:");
 		modelo.addColumn("Estado:");
 
-		table.setModel(modelo);
-
 		btnAgregar = new JButton("Agregar");
+		btnAgregar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnAgregar.addActionListener(this);
-		btnAgregar.setBounds(147, 59, 97, 25);
+		btnAgregar.setBounds(151, 90, 102, 25);
 		getContentPane().add(btnAgregar);
 		listar();
 	}

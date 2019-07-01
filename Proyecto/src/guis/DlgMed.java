@@ -42,9 +42,8 @@ public class DlgMed extends JDialog implements ActionListener, MouseListener {
 	private JButton btnModificar;
 	private JButton btnEliminar;
 	private JButton btnListar;
-	private JLabel label_4;
+	private JLabel lblCdigo;
 	private JTable tblmed;
-	private JLabel label;
 	private JButton btnGrabar;
 	private JLabel lblLaboratorio;
 	private JTextField txtLaboratorio;
@@ -80,18 +79,20 @@ public class DlgMed extends JDialog implements ActionListener, MouseListener {
 	public DlgMed() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgMed.class.getResource("/img/medicina.jpg")));
 		setTitle("Medicamentos:");
-		setBounds(100, 100, 677, 665);
+		setBounds(100, 100, 755, 736);
 		getContentPane().setLayout(null);
 
 		panel = new JPanel();
-		panel.setBounds(0, 0, 659, 618);
+		panel.setBackground(new Color(224, 255, 255));
+		panel.setBounds(0, 0, 737, 689);
 		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "", TitledBorder.LEFT, TitledBorder.TOP,
 				null, new Color(0, 0, 0)));
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		lblPreciounitario = new JLabel("Precio/unitario:");
-		lblPreciounitario.setBounds(23, 242, 92, 30);
+		lblPreciounitario.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblPreciounitario.setBounds(32, 246, 99, 17);
 		panel.add(lblPreciounitario);
 
 		modelo = new DefaultTableModel();
@@ -106,88 +107,92 @@ public class DlgMed extends JDialog implements ActionListener, MouseListener {
 		btnAdicionar.addActionListener(this);
 		btnAdicionar.setIcon(
 				new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\bin\\img\\ingresar.png"));
-		btnAdicionar.setBounds(23, 23, 94, 29);
-		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnAdicionar.setBounds(23, 23, 128, 33);
+		btnAdicionar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnAdicionar.setBackground(Color.WHITE);
 		panel.add(btnAdicionar);
 
 		btnConsultar = new JButton("Consultar");
+		btnConsultar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnConsultar.addActionListener(this);
 		btnConsultar.setIcon(new ImageIcon(DlgMed.class.getResource("/img/consulta.png")));
-		btnConsultar.setBounds(129, 23, 111, 29);
+		btnConsultar.setBounds(175, 23, 146, 33);
 		btnConsultar.setBackground(new Color(238, 232, 170));
 		panel.add(btnConsultar);
 
 		btnModificar = new JButton("Modificar");
+		btnModificar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnModificar.addActionListener(this);
 		btnModificar.setIcon(new ImageIcon(DlgMed.class.getResource("/img/modificar.png")));
-		btnModificar.setBounds(259, 23, 113, 33);
+		btnModificar.setBounds(352, 23, 158, 33);
 		btnModificar.setBackground(new Color(238, 232, 170));
 		panel.add(btnModificar);
 
 		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnEliminar.addActionListener(this);
 		btnEliminar.setIcon(new ImageIcon(DlgMed.class.getResource("/img/eliminar.png")));
-		btnEliminar.setBounds(384, 23, 107, 33);
+		btnEliminar.setBounds(528, 23, 158, 33);
 		btnEliminar.setBackground(new Color(238, 232, 170));
 		panel.add(btnEliminar);
 
 		btnListar = new JButton("Listar");
+		btnListar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnListar.addActionListener(this);
 		btnListar.setIcon(new ImageIcon(DlgMed.class.getResource("/img/registrar.png")));
-		btnListar.setBounds(503, 23, 91, 33);
+		btnListar.setBounds(552, 292, 134, 33);
 		btnListar.setBackground(new Color(238, 232, 170));
 		panel.add(btnListar);
 
-		label_4 = new JLabel("C\u00F3digo:");
-		label_4.setBounds(30, 104, 60, 30);
-		label_4.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		panel.add(label_4);
+		lblCdigo = new JLabel("C\u00F3digo");
+		lblCdigo.setBounds(32, 107, 60, 30);
+		lblCdigo.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		panel.add(lblCdigo);
 
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(DlgMed.class.getResource("/img/Foto_de_Medicamentos.jpg")));
-		label.setBounds(489, 235, 129, 61);
-		panel.add(label);
-
-		btnGrabar = new JButton("Aceptar");
+		btnGrabar = new JButton("Guardar");
+		btnGrabar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnGrabar.addActionListener(this);
-		btnGrabar.setBounds(289, 269, 97, 25);
+		btnGrabar.setBounds(294, 631, 124, 33);
 		panel.add(btnGrabar);
 
 		lblLaboratorio = new JLabel("Laboratorio");
-		lblLaboratorio.setBounds(23, 201, 65, 16);
+		lblLaboratorio.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblLaboratorio.setBounds(32, 205, 76, 17);
 		panel.add(lblLaboratorio);
 
 		txtLaboratorio = new JTextField();
-		txtLaboratorio.setBounds(129, 198, 116, 22);
+		txtLaboratorio.setBounds(159, 195, 197, 22);
 		panel.add(txtLaboratorio);
 		txtLaboratorio.setColumns(10);
 
 		lblStock = new JLabel("Stock");
-		lblStock.setBounds(36, 280, 56, 16);
+		lblStock.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblStock.setBounds(32, 300, 56, 16);
 		panel.add(lblStock);
 
 		txtStock = new JTextField();
-		txtStock.setBounds(143, 274, 116, 22);
+		txtStock.setBounds(159, 294, 197, 22);
 		panel.add(txtStock);
 		txtStock.setColumns(10);
 
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(34, 161, 56, 16);
+		lblNombre.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblNombre.setBounds(32, 154, 56, 16);
 		panel.add(lblNombre);
 
 		txtNombre = new JTextField();
-		txtNombre.setBounds(129, 155, 116, 22);
+		txtNombre.setBounds(159, 152, 197, 22);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 
 		btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnBuscar.addActionListener(this);
-		btnBuscar.setBounds(275, 107, 97, 25);
+		btnBuscar.setBounds(334, 103, 97, 25);
 		panel.add(btnBuscar);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(23, 332, 624, 273);
+		scrollPane.setBounds(23, 332, 702, 260);
 		panel.add(scrollPane);
 
 		tblmed = new JTable();
@@ -199,12 +204,12 @@ public class DlgMed extends JDialog implements ActionListener, MouseListener {
 		tblmed.setModel(modelo);
 
 		txtPrecioUnitario = new JTextField();
-		txtPrecioUnitario.setBounds(133, 246, 116, 22);
+		txtPrecioUnitario.setBounds(159, 243, 197, 22);
 		panel.add(txtPrecioUnitario);
 		txtPrecioUnitario.setColumns(10);
 
 		txtCodigo = new JTextField();
-		txtCodigo.setBounds(129, 108, 116, 22);
+		txtCodigo.setBounds(159, 105, 116, 22);
 		panel.add(txtCodigo);
 		txtCodigo.setColumns(10);
 

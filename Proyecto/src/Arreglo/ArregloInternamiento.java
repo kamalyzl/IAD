@@ -68,7 +68,7 @@ public class ArregloInternamiento {
 	public void cargarInternamiento() {
 		try {
 			BufferedReader br;
-			String linea, fechaIngreso, horaIngreso, fechaSalida, horaSalida;
+			String linea, fechaIngreso, horaIngreso;
 			String s[];
 			int codigoInternamiento, codigoPaciente, numeroCama, estado;
 			double totalPagar;
@@ -80,12 +80,10 @@ public class ArregloInternamiento {
 				numeroCama = Integer.parseInt(s[2].trim());
 				fechaIngreso = s[3].trim();
 				horaIngreso = s[4].trim();
-				fechaSalida = s[5].trim();
-				horaSalida = s[6].trim();
-				totalPagar = Double.parseDouble(s[7].trim());
-				estado = Integer.parseInt(s[8].trim());
+				totalPagar = Double.parseDouble(s[5].trim());
+				estado = Integer.parseInt(s[6].trim());
 				adicionar(new Internamiento(codigoInternamiento, codigoPaciente, numeroCama, fechaIngreso, horaIngreso,
-						fechaSalida, horaSalida, totalPagar, estado));
+						totalPagar, estado));
 			}
 			br.close();
 		} catch (Exception e) {
@@ -101,8 +99,8 @@ public class ArregloInternamiento {
 			for (int i = 0; i < tamaño(); i++) {
 				x = obtener(i);
 				linea = x.getCodigoInternamiento() + ";" + x.getCodigoPaciente() + ";" + x.getNumeroCama() + ";" + ";"
-						+ x.getFechaIngreso() + ";" + x.getHoraIngreso() + ";" + x.getFechaSalida() + ";"
-						+ x.getHoraSalida() + ";" + x.getTotalPagar() + ";" + x.getEstado() + ";";
+						+ x.getFechaIngreso() + ";" + x.getHoraIngreso() + ";" + x.getTotalPagar() + ";" + x.getEstado()
+						+ ";";
 				pw.println(linea);
 			}
 			pw.close();

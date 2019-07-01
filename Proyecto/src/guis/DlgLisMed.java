@@ -16,9 +16,7 @@ import java.awt.Color;
 import javax.swing.border.BevelBorder;
 
 public class DlgLisMed extends JDialog implements ActionListener {
-	private JLabel label;
 	private JLabel lblListar;
-	private JButton btnListar;
 	private JButton btnSalir;
 	private JScrollPane scrollPane;
 	private JTable tbllismed;
@@ -44,29 +42,25 @@ public class DlgLisMed extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public DlgLisMed() {
+		getContentPane().setBackground(new Color(224, 255, 255));
 		setTitle("Listar Medicina");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgLisMed.class.getResource("/img/TriCell.jpg")));
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 416);
 		getContentPane().setLayout(null);
 		
-		lblListar = new JLabel("Medicamento:");
-		lblListar.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblListar.setBounds(20, 70, 150, 22);
+		lblListar = new JLabel("Medicamento");
+		lblListar.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		lblListar.setBounds(143, 43, 150, 22);
 		getContentPane().add(lblListar);
 		
-		btnListar = new JButton("Listar");
-		btnListar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnListar.setBounds(193, 73, 89, 23);
-		getContentPane().add(btnListar);
-		
-		btnSalir = new JButton("Salir");
+		btnSalir = new JButton("Agregar");
 		btnSalir.addActionListener(this);
-		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnSalir.setBounds(281, 73, 89, 23);
+		btnSalir.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+		btnSalir.setBounds(163, 98, 89, 23);
 		getContentPane().add(btnSalir);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 106, 350, 120);
+		scrollPane.setBounds(12, 175, 408, 181);
 		getContentPane().add(scrollPane);
 		
 		tbllismed = new JTable();
@@ -74,11 +68,6 @@ public class DlgLisMed extends JDialog implements ActionListener {
 		tbllismed.setFillsViewportHeight(true);
 		tbllismed.setBackground(Color.LIGHT_GRAY);
 		scrollPane.setViewportView(tbllismed);
-		
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(DlgLisMed.class.getResource("/img/SV9.jpg")));
-		label.setBounds(0, 0, 434, 261);
-		getContentPane().add(label);
 
 	}
 

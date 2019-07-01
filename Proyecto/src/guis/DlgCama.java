@@ -55,8 +55,6 @@ public class DlgCama extends JDialog implements ActionListener, MouseListener {
 	private JLabel lblNroCama;
 	private JTextField txtCama;
 	private JButton btnVerTodoslistar;
-	private JTextField textField;
-	private JLabel label;
 	private JButton btnConsultar;
 
 	/**
@@ -89,41 +87,34 @@ public class DlgCama extends JDialog implements ActionListener, MouseListener {
 		setFont(new Font("Georgia", Font.BOLD, 12));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgCama.class.getResource("/img/cama.png")));
 		setTitle(" Cama - Clinica Bautista");
-		getContentPane().setBackground(Color.WHITE);
+		getContentPane().setBackground(new Color(224, 255, 255));
 		setForeground(Color.LIGHT_GRAY);
-		setBounds(300, 100, 818, 654);
+		setBounds(300, 100, 818, 733);
 		getContentPane().setLayout(null);
 
 		btnIngresar = new JButton("Adicionar");
-		btnIngresar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnIngresar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnIngresar.addActionListener(this);
-
-		label = new JLabel("");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setToolTipText("");
-		label.setIcon(new ImageIcon(DlgCama.class.getResource("/img/SV1.jpg")));
-		label.setBounds(559, 9, 127, 93);
-		getContentPane().add(label);
-		btnIngresar.setBounds(23, 205, 99, 29);
+		btnIngresar.setBounds(36, 31, 113, 29);
 		getContentPane().add(btnIngresar);
 
 		btnModificar = new JButton("Modificar");
-		btnModificar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnModificar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnModificar.setIcon(new ImageIcon(DlgCama.class.getResource("/img/mantenimiento.png")));
 		btnModificar.addActionListener(this);
-		btnModificar.setBounds(283, 205, 133, 29);
+		btnModificar.setBounds(321, 31, 133, 29);
 		getContentPane().add(btnModificar);
 
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnEliminar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnEliminar.setIcon(
 				new ImageIcon("G:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\eliminar.png"));
 		btnEliminar.addActionListener(this);
-		btnEliminar.setBounds(445, 205, 133, 29);
+		btnEliminar.setBounds(478, 31, 133, 29);
 		getContentPane().add(btnEliminar);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 248, 778, 346);
+		scrollPane.setBounds(10, 337, 778, 257);
 		getContentPane().add(scrollPane);
 
 		tableCama = new JTable();
@@ -142,78 +133,70 @@ public class DlgCama extends JDialog implements ActionListener, MouseListener {
 		tableCama.setModel(modelo);
 
 		lblCategora = new JLabel("Categor\u00EDa:");
-		lblCategora.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblCategora.setBounds(10, 79, 73, 21);
+		lblCategora.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblCategora.setBounds(36, 205, 73, 21);
 		getContentPane().add(lblCategora);
 
 		cbxCategoria = new JComboBox();
-		cbxCategoria.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		cbxCategoria.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		cbxCategoria.setEnabled(false);
 		cbxCategoria.setModel(new DefaultComboBoxModel(new String[] { "B\u00E1sica", "Est\u00E1ndar", "Premium" }));
-		cbxCategoria.setBounds(125, 76, 95, 26);
+		cbxCategoria.setBounds(147, 202, 113, 26);
 		getContentPane().add(cbxCategoria);
 
 		lblEstado = new JLabel("Estado:");
-		lblEstado.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblEstado.setBounds(10, 140, 54, 21);
+		lblEstado.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblEstado.setBounds(36, 259, 54, 21);
 		getContentPane().add(lblEstado);
 
 		cbxEstado = new JComboBox();
-		cbxEstado.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		cbxEstado.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		cbxEstado.setEnabled(false);
 		cbxEstado.setModel(new DefaultComboBoxModel(new String[] { "Libre", "Ocupado" }));
-		cbxEstado.setBounds(125, 138, 94, 26);
+		cbxEstado.setBounds(147, 256, 113, 26);
 		getContentPane().add(cbxEstado);
 
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnGuardar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnGuardar.setIcon(new ImageIcon(DlgCama.class.getResource("/img/grabar.png")));
 		btnGuardar.addActionListener(this);
-		btnGuardar.setBounds(283, 135, 125, 33);
+		btnGuardar.setBounds(338, 626, 125, 33);
 		getContentPane().add(btnGuardar);
 
 		btnBuscar = new JButton("Buscar");
-		btnBuscar.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnBuscar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnBuscar.setIcon(
 				new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\consulta.png"));
 		btnBuscar.addActionListener(this);
-		btnBuscar.setBounds(320, 9, 90, 30);
+		btnBuscar.setBounds(301, 143, 90, 30);
 		getContentPane().add(btnBuscar);
 
 		lblNroCama = new JLabel("Nro Cama:");
-		lblNroCama.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblNroCama.setBounds(10, 11, 76, 21);
+		lblNroCama.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblNroCama.setBounds(36, 149, 76, 21);
 		getContentPane().add(lblNroCama);
 
 		txtCama = new JTextField();
-		txtCama.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtCama.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		txtCama.setHorizontalAlignment(SwingConstants.CENTER);
 		txtCama.setBackground(Color.WHITE);
 		txtCama.setEditable(false);
-		txtCama.setBounds(120, 10, 146, 26);
+		txtCama.setBounds(147, 147, 113, 26);
 		getContentPane().add(txtCama);
 		txtCama.setColumns(10);
 
 		btnVerTodoslistar = new JButton("Listar");
-		btnVerTodoslistar.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnVerTodoslistar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnVerTodoslistar.setIcon(
 				new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\registrar.png"));
 		btnVerTodoslistar.addActionListener(this);
-		btnVerTodoslistar.setBounds(596, 203, 90, 30);
+		btnVerTodoslistar.setBounds(680, 283, 90, 30);
 		getContentPane().add(btnVerTodoslistar);
-
-		textField = new JTextField();
-		textField.setFont(new Font("Dialog", Font.PLAIN, 15));
-		textField.setEditable(false);
-		textField.setBackground(new Color(176, 224, 230));
-		textField.setBounds(0, -7, 800, 186);
-		getContentPane().add(textField);
-		textField.setColumns(10);
 
 		btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(this);
-		btnConsultar.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnConsultar.setBounds(158, 205, 99, 29);
+		btnConsultar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		btnConsultar.setBounds(172, 31, 113, 29);
 		getContentPane().add(btnConsultar);
 
 	}

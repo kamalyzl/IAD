@@ -52,10 +52,7 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 	private JButton btnModificar;
 	private JButton btnEliminar;
 	private JButton btnListar;
-	private JTextField txtcod;
 	private JLabel lblCdigo;
-	private JTextField textField;
-	private JLabel label;
 	private JButton btnBuscar;
 	private JButton btnGuardar;
 
@@ -92,37 +89,37 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 		getContentPane().setLayout(null);
 
 		panel = new JPanel();
+		panel.setBackground(new Color(224, 255, 255));
 		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "", TitledBorder.LEFT, TitledBorder.TOP,
 				null, new Color(0, 0, 0)));
 		panel.setBounds(0, 0, 702, 629);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(DlgPaciente.class.getResource("/img/medicos.png")));
-		label.setBounds(568, 151, 122, 78);
-		panel.add(label);
-
-		lblNombre = new JLabel("Nombres:");
-		lblNombre.setBounds(10, 126, 108, 14);
+		lblNombre = new JLabel("Nombres");
+		lblNombre.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblNombre.setBounds(10, 135, 108, 14);
 		panel.add(lblNombre);
 
-		lblApellido = new JLabel("Apellidos:");
-		lblApellido.setBounds(10, 151, 108, 14);
+		lblApellido = new JLabel("Apellidos");
+		lblApellido.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblApellido.setBounds(10, 176, 108, 14);
 		panel.add(lblApellido);
 
-		lblTelefono = new JLabel("Telefono:");
-		lblTelefono.setBounds(10, 176, 60, 14);
+		lblTelefono = new JLabel("Telefono");
+		lblTelefono.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblTelefono.setBounds(10, 216, 60, 14);
 		panel.add(lblTelefono);
 
-		lblDni = new JLabel("D.I:");
-		lblDni.setBounds(10, 201, 46, 14);
+		lblDni = new JLabel("DNI");
+		lblDni.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblDni.setBounds(10, 253, 46, 14);
 		panel.add(lblDni);
 
 		txtnom = new JTextField();
 		txtnom.setForeground(Color.BLACK);
 		txtnom.setBackground(Color.WHITE);
-		txtnom.setBounds(77, 123, 122, 20);
+		txtnom.setBounds(100, 133, 122, 20);
 		panel.add(txtnom);
 		txtnom.setColumns(10);
 
@@ -130,25 +127,25 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 		txtape.setForeground(Color.BLACK);
 		txtape.setBackground(Color.WHITE);
 		txtape.setColumns(10);
-		txtape.setBounds(77, 148, 122, 20);
+		txtape.setBounds(100, 174, 122, 20);
 		panel.add(txtape);
 
 		txttel = new JTextField();
 		txttel.setBackground(Color.WHITE);
 		txttel.setForeground(Color.BLACK);
 		txttel.setColumns(10);
-		txttel.setBounds(77, 173, 122, 20);
+		txttel.setBounds(100, 214, 122, 20);
 		panel.add(txttel);
 
 		txtdni = new JTextField();
 		txtdni.setForeground(Color.BLACK);
 		txtdni.setBackground(Color.WHITE);
 		txtdni.setColumns(10);
-		txtdni.setBounds(77, 198, 122, 20);
+		txtdni.setBounds(100, 251, 122, 20);
 		panel.add(txtdni);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 242, 680, 374);
+		scrollPane.setBounds(10, 288, 680, 253);
 		panel.add(scrollPane);
 
 		tblpac = new JTable();
@@ -167,74 +164,69 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 
 		tblpac.setModel(modelo);
 
-		btnAdicionar = new JButton("ADICIONAR + ");
+		btnAdicionar = new JButton("Adicionar");
 		btnAdicionar.addActionListener(this);
 		btnAdicionar.setBackground(Color.WHITE);
 		btnAdicionar.setIcon(
 				new ImageIcon("F:\\AED\\sdfsd\\Soluci\u00F3n_Proyectos_IA\\Proyecto_\\src\\img\\ingresar.png"));
-		btnAdicionar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnAdicionar.setBounds(10, 31, 133, 23);
+		btnAdicionar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		btnAdicionar.setBounds(10, 31, 133, 33);
 
 		panel.add(btnAdicionar);
 
 		btnConsultar = new JButton("Consultar");
+		btnConsultar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnConsultar.addActionListener(this);
 		btnConsultar.setIcon(new ImageIcon(DlgPaciente.class.getResource("/img/consulta.png")));
 		btnConsultar.setBackground(Color.WHITE);
-		btnConsultar.setBounds(155, 27, 111, 29);
+		btnConsultar.setBounds(155, 31, 129, 33);
 		panel.add(btnConsultar);
 
 		btnModificar = new JButton("Modificar");
+		btnModificar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnModificar.addActionListener(this);
 		btnModificar.setIcon(new ImageIcon(DlgPaciente.class.getResource("/img/modificar.png")));
 		btnModificar.setBackground(Color.WHITE);
-		btnModificar.setBounds(296, 25, 113, 33);
+		btnModificar.setBounds(308, 31, 146, 33);
 		panel.add(btnModificar);
 
 		btnEliminar = new JButton("Eliminar");
+		btnEliminar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnEliminar.setIcon(new ImageIcon(DlgPaciente.class.getResource("/img/eliminar.png")));
 		btnEliminar.setBackground(Color.WHITE);
 		btnEliminar.addActionListener(this);
-		btnEliminar.setBounds(427, 25, 107, 33);
+		btnEliminar.setBounds(483, 31, 146, 33);
 		panel.add(btnEliminar);
 
 		btnListar = new JButton("Listar");
+		btnListar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnListar.addActionListener(this);
 		btnListar.setIcon(new ImageIcon(DlgPaciente.class.getResource("/img/registrar.png")));
 		btnListar.setBackground(Color.WHITE);
-		btnListar.setBounds(577, 25, 113, 33);
+		btnListar.setBounds(516, 234, 113, 33);
 		panel.add(btnListar);
 
-		txtcod = new JTextField();
-		txtcod.setHorizontalAlignment(SwingConstants.CENTER);
-		txtcod.setText("200001");
-		txtcod.setForeground(Color.WHITE);
-		txtcod.setBackground(new Color(0, 206, 209));
-		txtcod.setBounds(77, 95, 122, 20);
-		panel.add(txtcod);
-		txtcod.setColumns(10);
-
-		lblCdigo = new JLabel("C\u00F3digo:");
-		lblCdigo.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblCdigo = new JLabel("C\u00F3digo");
+		lblCdigo.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		lblCdigo.setBounds(10, 94, 57, 21);
 		panel.add(lblCdigo);
 
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBackground(new Color(72, 209, 204));
-		textField.setBounds(0, 0, 702, 83);
-		panel.add(textField);
-		textField.setColumns(10);
-
 		btnBuscar = new JButton("Buscar");
+		btnBuscar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnBuscar.addActionListener(this);
-		btnBuscar.setBounds(234, 93, 71, 25);
+		btnBuscar.setBounds(245, 93, 133, 25);
 		panel.add(btnBuscar);
 
 		btnGuardar = new JButton("Aceptar");
+		btnGuardar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnGuardar.addActionListener(this);
-		btnGuardar.setBounds(221, 196, 97, 25);
+		btnGuardar.setBounds(296, 571, 97, 25);
 		panel.add(btnGuardar);
+		
+		txtcod = new JTextField();
+		txtcod.setBounds(100, 94, 122, 22);
+		panel.add(txtcod);
+		txtcod.setColumns(10);
 		habilitarEntradas(false);
 		habilitarCodigo(false);
 		limpieza();
@@ -242,6 +234,7 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 	}
 
 	ArregloPaciente ap = new ArregloPaciente("paciente.txt");
+	private JTextField txtcod;
 
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btnGuardar) {
@@ -380,8 +373,6 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 	}
 
 	void habilitarCodigo(boolean is) {
-		txtcod.setEditable(is);
-		txtcod.requestFocus();
 	}
 
 	void mensaje(String s) {
@@ -416,7 +407,6 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 	}
 
 	void limpieza() {
-		txtcod.setText("");
 		txtnom.setText("");
 		txtape.setText("");
 		txttel.setText("");

@@ -44,7 +44,7 @@ public class DlgRepConsultasPendientes extends JDialog {
 	public DlgRepConsultasPendientes() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgRepConsultasPendientes.class.getResource("/img/TriCell.jpg")));
 		setTitle("Consultas Pendientes");
-		setBounds(100, 100, 630, 300);
+		setBounds(100, 100, 630, 407);
 		getContentPane().setLayout(null);
 		
 		btnNewButton = new JButton("");
@@ -53,7 +53,7 @@ public class DlgRepConsultasPendientes extends JDialog {
 		getContentPane().add(btnNewButton);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 49, 594, 201);
+		scrollPane.setBounds(10, 49, 594, 277);
 		getContentPane().add(scrollPane);
 		
 		tblrepconpen = new JTable();
@@ -74,7 +74,7 @@ public class DlgRepConsultasPendientes extends JDialog {
 		txtConsultasPendientes.setFont(new Font("Sitka Subheading", Font.BOLD, 18));
 		txtConsultasPendientes.setEditable(false);
 		txtConsultasPendientes.setText("           CONSULTAS                                               PENDIENTES");
-		txtConsultasPendientes.setBackground(new Color(245, 222, 179));
+		txtConsultasPendientes.setBackground(new Color(224, 255, 255));
 		txtConsultasPendientes.setBounds(10, 11, 594, 38);
 		getContentPane().add(txtConsultasPendientes);
 		txtConsultasPendientes.setColumns(10);

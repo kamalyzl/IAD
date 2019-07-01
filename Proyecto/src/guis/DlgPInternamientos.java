@@ -26,24 +26,13 @@ public class DlgPInternamientos extends JDialog {
 	private JLabel lblCdigo;
 	private JComboBox cbocod;
 	private JPanel panel;
-	private JScrollPane scrollPane;
 	private static DefaultTableModel modelo;
-	private JTable tblpagint;
 	private JLabel lblNewLabel;
 	private JLabel lblEstado;
 	private JComboBox comboBox_1;
 	private JButton btnConsultar;
-	private JLabel lblFecha;
-	private JLabel lblHoraDeSalida;
-	private JComboBox comboBox_2;
-	private JComboBox comboBox_3;
-	private JComboBox comboBox_4;
-	private JComboBox comboBox_5;
-	private JComboBox comboBox_6;
-	private JTextField txthrs;
-	private JTextField textField;
-	private JLabel lblboticaBautista;
-	private JLabel lblservicioDeInternamiento;
+	private JScrollPane scrollPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -68,49 +57,30 @@ public class DlgPInternamientos extends JDialog {
 	public DlgPInternamientos() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgPInternamientos.class.getResource("/img/TriCell.jpg")));
 		setTitle("Pagos por internamiento");
-		setBounds(100, 100, 483, 441);
+		setBounds(100, 100, 554, 613);
 		getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 457, 391);
+		panel.setBackground(new Color(224, 255, 255));
+		panel.setBounds(0, 0, 536, 566);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		lblboticaBautista = new JLabel("\"Botica Bautista\"");
-		lblboticaBautista.setFont(new Font("Sitka Subheading", Font.BOLD, 24));
-		lblboticaBautista.setHorizontalAlignment(SwingConstants.CENTER);
-		lblboticaBautista.setBounds(243, 36, 204, 73);
-		panel.add(lblboticaBautista);
-		
-		lblservicioDeInternamiento = new JLabel("Servicio de internamiento");
-		lblservicioDeInternamiento.setHorizontalAlignment(SwingConstants.CENTER);
-		lblservicioDeInternamiento.setFont(new Font("Sitka Subheading", Font.PLAIN, 14));
-		lblservicioDeInternamiento.setBounds(242, 109, 215, 40);
-		panel.add(lblservicioDeInternamiento);
-		
 		comboBox = new JComboBox();
-		comboBox.setBounds(114, 33, 58, 20);
+		comboBox.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		comboBox.setBounds(159, 95, 93, 20);
 		panel.add(comboBox);
 		comboBox.setToolTipText("");
 		
-		lblCdigo = new JLabel("Codigo:");
-		lblCdigo.setBounds(10, 5, 54, 17);
+		lblCdigo = new JLabel("Codigo");
+		lblCdigo.setBounds(28, 48, 54, 17);
 		panel.add(lblCdigo);
-		lblCdigo.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCdigo.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		
 		cbocod = new JComboBox();
-		cbocod.setBounds(114, 5, 58, 20);
+		cbocod.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		cbocod.setBounds(109, 46, 98, 20);
 		panel.add(cbocod);
-		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 178, 457, 213);
-		panel.add(scrollPane);
-		
-		tblpagint = new JTable();
-		tblpagint.setBackground(Color.LIGHT_GRAY);
-		tblpagint.setFillsViewportHeight(true);
-		tblpagint.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		scrollPane.setViewportView(tblpagint);
 		
 		
 		modelo = new DefaultTableModel();
@@ -118,67 +88,35 @@ public class DlgPInternamientos extends JDialog {
 		modelo.addColumn("Fecha:");
 		modelo.addColumn("Precio por día:");
 		modelo.addColumn("Total a pagar:");
-		tblpagint.setModel(modelo);
 
 		
 		lblNewLabel = new JLabel("E. internamiento");
-		lblNewLabel.setBounds(10, 39, 94, 14);
+		lblNewLabel.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblNewLabel.setBounds(28, 97, 119, 17);
 		panel.add(lblNewLabel);
 		
-		lblEstado = new JLabel("E. cama:");
-		lblEstado.setBounds(10, 120, 64, 14);
+		lblEstado = new JLabel("E. cama");
+		lblEstado.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblEstado.setBounds(28, 139, 84, 14);
 		panel.add(lblEstado);
 		
 		comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(114, 120, 58, 20);
+		comboBox_1.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		comboBox_1.setBounds(159, 136, 93, 20);
 		panel.add(comboBox_1);
 		
 		btnConsultar = new JButton("");
 		btnConsultar.setIcon(new ImageIcon(DlgPInternamientos.class.getResource("/img/consulta.png")));
-		btnConsultar.setBounds(154, 148, 40, 30);
+		btnConsultar.setBounds(454, 192, 40, 30);
 		panel.add(btnConsultar);
 		
-		lblFecha = new JLabel("Fecha:");
-		lblFecha.setBounds(10, 62, 46, 14);
-		panel.add(lblFecha);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 257, 514, 235);
+		panel.add(scrollPane);
 		
-		lblHoraDeSalida = new JLabel("Hora de salida:");
-		lblHoraDeSalida.setBounds(10, 95, 94, 14);
-		panel.add(lblHoraDeSalida);
-		
-		comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(115, 62, 40, 20);
-		panel.add(comboBox_2);
-		
-		comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(154, 62, 40, 20);
-		panel.add(comboBox_3);
-		
-		comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(193, 62, 40, 20);
-		panel.add(comboBox_4);
-		
-		comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(114, 95, 40, 20);
-		panel.add(comboBox_5);
-		
-		comboBox_6 = new JComboBox();
-		comboBox_6.setBounds(152, 95, 40, 20);
-		panel.add(comboBox_6);
-		
-		txthrs = new JTextField();
-		txthrs.setEditable(false);
-		txthrs.setText("HRS");
-		txthrs.setBounds(192, 95, 40, 20);
-		panel.add(txthrs);
-		txthrs.setColumns(10);
-		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBackground(new Color(222, 184, 135));
-		textField.setBounds(0, 0, 468, 178);
-		panel.add(textField);
-		textField.setColumns(10);
+		table = new JTable();
+		table.setBackground(new Color(255, 255, 255));
+		scrollPane.setViewportView(table);
 
 	}
 }

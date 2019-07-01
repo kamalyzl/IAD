@@ -25,7 +25,6 @@ public class DlgLisPac extends JDialog implements ActionListener, MouseListener 
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel label;
 	private JLabel lblPaciente;
 	private JButton bntAdd;
 	private JScrollPane scrollPane;
@@ -53,24 +52,25 @@ public class DlgLisPac extends JDialog implements ActionListener, MouseListener 
 	 * Create the dialog.
 	 */
 	public DlgLisPac() {
+		getContentPane().setBackground(new Color(224, 255, 255));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgLisPac.class.getResource("/img/TriCell.jpg")));
 		setTitle("Listar Paciente");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 416);
 		getContentPane().setLayout(null);
 
 		lblPaciente = new JLabel("Paciente");
-		lblPaciente.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblPaciente.setBounds(137, 25, 79, 22);
+		lblPaciente.setFont(new Font("Century Gothic", Font.BOLD, 18));
+		lblPaciente.setBounds(169, 37, 78, 23);
 		getContentPane().add(lblPaciente);
 
 		bntAdd = new JButton("Agregar");
 		bntAdd.addActionListener(this);
-		bntAdd.setFont(new Font("Tahoma", Font.BOLD, 11));
-		bntAdd.setBounds(104, 54, 154, 23);
+		bntAdd.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		bntAdd.setBounds(126, 107, 154, 23);
 		getContentPane().add(bntAdd);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 90, 350, 120);
+		scrollPane.setBounds(12, 173, 408, 183);
 		getContentPane().add(scrollPane);
 
 		tbllispac = new JTable();
@@ -88,11 +88,6 @@ public class DlgLisPac extends JDialog implements ActionListener, MouseListener 
 		modelo.addColumn("DNI:");
 
 		tbllispac.setModel(modelo);
-
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(DlgLisPac.class.getResource("/img/SV9.jpg")));
-		label.setBounds(0, 0, 434, 261);
-		getContentPane().add(label);
 
 		listar();
 

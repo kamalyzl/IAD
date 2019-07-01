@@ -31,9 +31,6 @@ public class DlgRInternamientos extends JDialog implements ActionListener {
 	private static DefaultTableModel modelo;
 	private JScrollPane scrollPane;
 	private JTable tblrint;
-	private JTextField textField;
-	private JLabel label;
-	private JTextField txtInternamientos;
 	static JTextField txtCama;
 	private JButton btnCama;
 	private JTextField txtCodInternamiento;
@@ -72,18 +69,20 @@ public class DlgRInternamientos extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public DlgRInternamientos() {
+		getContentPane().setBackground(new Color(224, 255, 255));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgRInternamientos.class.getResource("/img/registrar.png")));
 		setTitle("Internamientos");
-		setBounds(100, 100, 600, 632);
+		setBounds(100, 100, 688, 632);
 		getContentPane().setLayout(null);
 
 		cboEstado = new JComboBox();
+		cboEstado.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		cboEstado.setModel(new DefaultComboBoxModel(new String[] { "Internado", "Alta" }));
-		cboEstado.setBounds(187, 70, 86, 20);
+		cboEstado.setBounds(213, 85, 91, 23);
 		getContentPane().add(cboEstado);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 251, 564, 173);
+		scrollPane.setBounds(10, 293, 648, 213);
 		getContentPane().add(scrollPane);
 
 		tblrint = new JTable();
@@ -95,83 +94,70 @@ public class DlgRInternamientos extends JDialog implements ActionListener {
 		modelo.addColumn("Num de Cama"); 
 		modelo.addColumn("Fecha Ingreso");
 		modelo.addColumn("Hora Ingreso");
-		modelo.addColumn("Fecha Salida");
-		modelo.addColumn("Hora Salida");
 		modelo.addColumn("Total");
 		modelo.addColumn("Estado");
 
 		tblrint.setModel(modelo);
 
-		textField = new JTextField();
-		textField.setBackground(new Color(210, 180, 140));
-		textField.setEditable(false);
-		textField.setBounds(10, 470, 564, 115);
-		getContentPane().add(textField);
-		textField.setColumns(10);
-
-		label = new JLabel("");
-		label.setIcon(new ImageIcon(DlgRInternamientos.class.getResource("/img/hospital_int.jpg")));
-		label.setBounds(537, 196, 37, 42);
-		getContentPane().add(label);
-
-		txtInternamientos = new JTextField();
-		txtInternamientos.setEditable(false);
-		txtInternamientos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		txtInternamientos.setHorizontalAlignment(SwingConstants.CENTER);
-		txtInternamientos.setText("INTERNAMIENTOS");
-		txtInternamientos.setBackground(new Color(173, 216, 230));
-		txtInternamientos.setBounds(315, 196, 212, 42);
-		getContentPane().add(txtInternamientos);
-		txtInternamientos.setColumns(10);
-
 		txtCama = new JTextField();
-		txtCama.setBounds(443, 21, 116, 22);
+		txtCama.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		txtCama.setBounds(149, 134, 116, 24);
 		getContentPane().add(txtCama);
 		txtCama.setColumns(10);
 
 		btnCama = new JButton("N\u00B0 Cama");
+		btnCama.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnCama.addActionListener(this);
-		btnCama.setBounds(344, 20, 97, 25);
+		btnCama.setBounds(30, 133, 93, 25);
 		getContentPane().add(btnCama);
 
 		txtCodInternamiento = new JTextField();
-		txtCodInternamiento.setBounds(125, 21, 116, 22);
+		txtCodInternamiento.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		txtCodInternamiento.setBounds(107, 40, 116, 22);
 		getContentPane().add(txtCodInternamiento);
 		txtCodInternamiento.setColumns(10);
 
 		lblCdigo = new JLabel("C\u00F3digo");
-		lblCdigo.setBounds(26, 24, 39, 16);
+		lblCdigo.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblCdigo.setBounds(28, 42, 67, 17);
 		getContentPane().add(lblCdigo);
 
 		lblTotal = new JLabel("Total a pagar");
-		lblTotal.setBounds(28, 125, 77, 16);
+		lblTotal.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblTotal.setBounds(531, 199, 88, 17);
 		getContentPane().add(lblTotal);
 
 		txtTotal = new JTextField();
-		txtTotal.setBounds(125, 122, 116, 22);
+		txtTotal.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		txtTotal.setBounds(522, 229, 116, 50);
 		getContentPane().add(txtTotal);
 		txtTotal.setColumns(10);
 
 		btnPaciente = new JButton("Paciente");
+		btnPaciente.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnPaciente.addActionListener(this);
-		btnPaciente.setBounds(344, 81, 97, 25);
+		btnPaciente.setBounds(30, 174, 97, 25);
 		getContentPane().add(btnPaciente);
 
 		txtPaciente = new JTextField();
-		txtPaciente.setBounds(443, 82, 116, 22);
+		txtPaciente.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		txtPaciente.setBounds(149, 174, 116, 25);
 		getContentPane().add(txtPaciente);
 		txtPaciente.setColumns(10);
 
 		lblEstadoDeInternamiento = new JLabel("Estado de internamiento");
-		lblEstadoDeInternamiento.setBounds(26, 72, 139, 16);
+		lblEstadoDeInternamiento.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblEstadoDeInternamiento.setBounds(28, 88, 193, 17);
 		getContentPane().add(lblEstadoDeInternamiento);
 
 		btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBounds(10, 196, 97, 25);
+		btnAdicionar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		btnAdicionar.setBounds(28, 255, 95, 25);
 		getContentPane().add(btnAdicionar);
 
 		btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(125, 196, 97, 25);
+		btnGuardar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		btnGuardar.setBounds(293, 530, 108, 30);
 		getContentPane().add(btnGuardar);
 		listar();
 		habilitarEntradas(false);
@@ -237,8 +223,7 @@ public class DlgRInternamientos extends JDialog implements ActionListener {
 		for (int i = 0; i < ainter.tamaño(); i++) {
 			Object[] fila = { ainter.obtener(i).getCodigoInternamiento(), ainter.obtener(i).getCodigoPaciente(),
 					ainter.obtener(i).getNumeroCama(), ainter.obtener(i).getFechaIngreso(),
-					ainter.obtener(i).getHoraIngreso(), ainter.obtener(i).getFechaSalida(),
-					ainter.obtener(i).getHoraSalida() };
+					ainter.obtener(i).getHoraIngreso(), ainter.obtener(i).getTotalPagar(), ainter.obtener(i).detalleEstado() };
 			modelo.addRow(fila);
 		}
 	}

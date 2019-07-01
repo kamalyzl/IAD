@@ -16,18 +16,19 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class DlgPConsultas extends JDialog {
-	private JLabel lblPago;
+public class DlgPConsultas extends JDialog implements ActionListener {
 	private JButton btnConsultar;
-	private JComboBox comboBox;
 	private JPanel panel;
 	private JScrollPane scrollPane;
-	private JTextField textField;
 	private JLabel lblEstadoDeLa;
 	private JComboBox comboBox_1;
 	private JTable tblpcon;
 	private static DefaultTableModel modelo;
+	private JButton btnCodigo;
 
 	/**
 	 * Launch the application.
@@ -52,41 +53,32 @@ public class DlgPConsultas extends JDialog {
 	public DlgPConsultas() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgPConsultas.class.getResource("/img/TriCell.jpg")));
 		setTitle("Consultas de Pago");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 411);
 		getContentPane().setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(0, 0, 434, 261);
+		panel.setBackground(new Color(224, 255, 255));
+		panel.setBounds(0, 0, 434, 364);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(191, 36, 96, 20);
+		comboBox_1.setBounds(166, 104, 96, 22);
 		panel.add(comboBox_1);
 		
 		lblEstadoDeLa = new JLabel("Estado:");
 		lblEstadoDeLa.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEstadoDeLa.setBounds(85, 33, 96, 26);
+		lblEstadoDeLa.setBounds(58, 101, 96, 26);
 		panel.add(lblEstadoDeLa);
-		
-		lblPago = new JLabel("C\u00F3digo:");
-		lblPago.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPago.setBounds(85, 5, 96, 22);
-		panel.add(lblPago);
-		lblPago.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		btnConsultar = new JButton("");
 		btnConsultar.setIcon(new ImageIcon(DlgPConsultas.class.getResource("/img/consulta.png")));
-		btnConsultar.setBounds(297, 5, 53, 50);
+		btnConsultar.setBounds(346, 74, 53, 50);
 		panel.add(btnConsultar);
 		btnConsultar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
-		comboBox = new JComboBox();
-		comboBox.setBounds(191, 5, 96, 20);
-		panel.add(comboBox);
-		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 65, 434, 174);
+		scrollPane.setBounds(12, 154, 410, 174);
 		panel.add(scrollPane);
 		
 		tblpcon = new JTable();
@@ -99,14 +91,18 @@ public class DlgPConsultas extends JDialog {
 		modelo.addColumn("Detalle de la receta:");
 		modelo.addColumn("Total a pagar:");
 		tblpcon.setModel(modelo);
-
 		
-		textField = new JTextField();
-		textField.setBackground(new Color(210, 180, 140));
-		textField.setEditable(false);
-		textField.setBounds(0, 0, 438, 65);
-		panel.add(textField);
-		textField.setColumns(10);
+		btnCodigo = new JButton("Codigo");
+		btnCodigo.addActionListener(this);
+		btnCodigo.setBounds(136, 44, 96, 26);
+		panel.add(btnCodigo);
 
+	}
+	public void actionPerformed(ActionEvent arg0) {
+		if (arg0.getSource() == btnCodigo) {
+			actionPerformedBtnCodigo(arg0);
+		}
+	}
+	protected void actionPerformedBtnCodigo(ActionEvent arg0) {
 	}
 }

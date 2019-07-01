@@ -18,6 +18,16 @@ public class Internamiento {
 		this.horaSalida = horaSalida;
 	}
 
+	public Internamiento(int codigoInternamiento, int codigoPaciente, int numeroCama, String fechaIngreso,
+			String horaIngreso, double totalPagar, int estado) {
+		this.codigoInternamiento = codigoInternamiento;
+		this.codigoPaciente = codigoPaciente;
+		this.numeroCama = numeroCama;
+		this.estado = estado;
+		this.fechaIngreso = fechaIngreso;
+		this.horaIngreso = horaIngreso;
+	}
+
 	public int getCodigoInternamiento() {
 		return codigoInternamiento;
 	}
