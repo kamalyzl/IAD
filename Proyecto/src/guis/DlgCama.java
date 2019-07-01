@@ -157,6 +157,7 @@ public class DlgCama extends JDialog implements ActionListener, MouseListener {
 		getContentPane().add(cbxEstado);
 
 		btnGuardar = new JButton("Guardar");
+		btnGuardar.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnGuardar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnGuardar.setIcon(new ImageIcon(DlgCama.class.getResource("/img/grabar.png")));
 		btnGuardar.addActionListener(this);

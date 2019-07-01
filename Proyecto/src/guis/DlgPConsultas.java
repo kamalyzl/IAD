@@ -29,6 +29,7 @@ public class DlgPConsultas extends JDialog implements ActionListener {
 	private JTable tblpcon;
 	private static DefaultTableModel modelo;
 	private JButton btnCodigo;
+	static JTextField txtCodigo;
 
 	/**
 	 * Launch the application.
@@ -53,12 +54,12 @@ public class DlgPConsultas extends JDialog implements ActionListener {
 	public DlgPConsultas() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DlgPConsultas.class.getResource("/img/TriCell.jpg")));
 		setTitle("Consultas de Pago");
-		setBounds(100, 100, 450, 411);
+		setBounds(100, 100, 585, 626);
 		getContentPane().setLayout(null);
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(224, 255, 255));
-		panel.setBounds(0, 0, 434, 364);
+		panel.setBounds(0, 0, 567, 579);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -73,12 +74,12 @@ public class DlgPConsultas extends JDialog implements ActionListener {
 		
 		btnConsultar = new JButton("");
 		btnConsultar.setIcon(new ImageIcon(DlgPConsultas.class.getResource("/img/consulta.png")));
-		btnConsultar.setBounds(346, 74, 53, 50);
+		btnConsultar.setBounds(479, 76, 53, 50);
 		panel.add(btnConsultar);
 		btnConsultar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 154, 410, 174);
+		scrollPane.setBounds(12, 154, 543, 412);
 		panel.add(scrollPane);
 		
 		tblpcon = new JTable();
@@ -96,6 +97,11 @@ public class DlgPConsultas extends JDialog implements ActionListener {
 		btnCodigo.addActionListener(this);
 		btnCodigo.setBounds(136, 44, 96, 26);
 		panel.add(btnCodigo);
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setBounds(12, 74, 116, 22);
+		panel.add(txtCodigo);
+		txtCodigo.setColumns(10);
 
 	}
 	public void actionPerformed(ActionEvent arg0) {
@@ -104,5 +110,8 @@ public class DlgPConsultas extends JDialog implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnCodigo(ActionEvent arg0) {
+		DlgLisConsulta dPC = new DlgLisConsulta();
+		dPC.setLocationRelativeTo(this);
+		dPC.setVisible(true);
 	}
 }

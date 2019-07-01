@@ -28,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
 public class DlgMed extends JDialog implements ActionListener, MouseListener {
 	/**
@@ -150,6 +151,7 @@ public class DlgMed extends JDialog implements ActionListener, MouseListener {
 		panel.add(lblCdigo);
 
 		btnGrabar = new JButton("Guardar");
+		btnGrabar.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnGrabar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnGrabar.addActionListener(this);
 		btnGrabar.setBounds(294, 631, 124, 33);

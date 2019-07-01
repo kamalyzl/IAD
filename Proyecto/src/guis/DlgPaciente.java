@@ -217,10 +217,11 @@ public class DlgPaciente extends JDialog implements ActionListener, MouseListene
 		btnBuscar.setBounds(245, 93, 133, 25);
 		panel.add(btnBuscar);
 
-		btnGuardar = new JButton("Aceptar");
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.setBorder(UIManager.getBorder("CheckBox.border"));
 		btnGuardar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnGuardar.addActionListener(this);
-		btnGuardar.setBounds(296, 571, 97, 25);
+		btnGuardar.setBounds(296, 571, 108, 33);
 		panel.add(btnGuardar);
 		
 		txtcod = new JTextField();

@@ -19,6 +19,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Arreglo.ArregloPaciente;
+import javax.swing.UIManager;
 
 public class DlgLisPac extends JDialog implements ActionListener, MouseListener {
 	/**
@@ -58,15 +59,16 @@ public class DlgLisPac extends JDialog implements ActionListener, MouseListener 
 		setBounds(100, 100, 450, 416);
 		getContentPane().setLayout(null);
 
-		lblPaciente = new JLabel("Paciente");
+		lblPaciente = new JLabel("PACIENTE");
 		lblPaciente.setFont(new Font("Century Gothic", Font.BOLD, 18));
-		lblPaciente.setBounds(169, 37, 78, 23);
+		lblPaciente.setBounds(157, 34, 81, 23);
 		getContentPane().add(lblPaciente);
 
 		bntAdd = new JButton("Agregar");
+		bntAdd.setBorder(UIManager.getBorder("CheckBox.border"));
 		bntAdd.addActionListener(this);
 		bntAdd.setFont(new Font("Century Gothic", Font.PLAIN, 13));
-		bntAdd.setBounds(126, 107, 154, 23);
+		bntAdd.setBounds(126, 95, 154, 34);
 		getContentPane().add(bntAdd);
 
 		scrollPane = new JScrollPane();

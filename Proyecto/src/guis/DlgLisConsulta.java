@@ -20,6 +20,10 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 public class DlgLisConsulta extends JDialog implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JScrollPane scrollPane;
 	private JTable table;
@@ -106,8 +110,11 @@ public class DlgLisConsulta extends JDialog implements ActionListener {
 		
 		DefaultTableModel tm = (DefaultTableModel) table.getModel();
 		String dato = String.valueOf(tm.getValueAt(table.getSelectedRow(), 0));
+		String dato2 = String.valueOf(tm.getValueAt(table.getSelectedRow(), 1));
 
-		DlgRConsultas.txtPaciente.setText(dato);
+		System.out.println(dato);
+		System.out.println(dato2);
+		DlgPConsultas.txtCodigo.setText(dato);
 
 		dispose();
 	}

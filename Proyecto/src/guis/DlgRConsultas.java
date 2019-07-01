@@ -124,28 +124,30 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 		panel.setLayout(null);
 
 		cboestado = new JComboBox();
+		cboestado.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		cboestado.setAlignmentY(Component.TOP_ALIGNMENT);
 		cboestado.setOpaque(false);
 		cboestado.setBackground(new Color(240, 255, 240));
 		cboestado.setBorder(UIManager.getBorder("ToggleButton.border"));
 		cboestado.setModel(new DefaultComboBoxModel(new String[] { "Atencion", "Pagada" }));
-		cboestado.setBounds(530, 9, 115, 63);
-		cboestado.setBorder(new RoundedBorder(20));
+		cboestado.setBounds(508, 28, 104, 26); 
 	 
  
 		panel.add(cboestado);
 
 		lblTotalAPagar = new JLabel("Total a Pagar");
-		lblTotalAPagar.setBounds(584, 152, 77, 16);
+		lblTotalAPagar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+		lblTotalAPagar.setBounds(576, 152, 87, 17);
 		panel.add(lblTotalAPagar);
 
 		lblEstado = new JLabel("Estado");
+		lblEstado.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		lblEstado.setBounds(446, 30, 50, 20);
 		panel.add(lblEstado);
 
 		txtTotal = new JTextField();
 		txtTotal.setBackground(new Color(240, 255, 240));
-		txtTotal.setFont(UIManager.getFont("FileChooser.listFont"));
+		txtTotal.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		txtTotal.setBorder(UIManager.getBorder("ToggleButton.border"));
 		txtTotal.setColumns(10);
 		txtTotal.setBounds(560, 181, 124, 64);
@@ -174,10 +176,12 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 		tblconmed.setModel(modelo);
 
 		lblNConsulta = new JLabel("N\u00B0 consulta");
+		lblNConsulta.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		lblNConsulta.setBounds(51, 26, 104, 28);
 		panel.add(lblNConsulta);
 
 		txtConsulta = new JTextField();
+		txtConsulta.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		txtConsulta.setBackground(new Color(255, 255, 255));
 		txtConsulta.setBorder(UIManager.getBorder("TitledBorder.border"));
 		txtConsulta.setBounds(182, 26, 131, 39);
@@ -186,6 +190,7 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 		txtConsulta.setColumns(10);
 
 		btnSeleccionar = new JButton("Paciente");
+		btnSeleccionar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnSeleccionar.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnSeleccionar.addActionListener(this);
 		btnSeleccionar.setBounds(37, 120, 133, 25);
@@ -194,6 +199,7 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 		panel.add(btnSeleccionar);
 
 		txtPaciente = new JTextField();
+		txtPaciente.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		txtPaciente.setBackground(new Color(240, 255, 240));
 		txtPaciente.setBorder(UIManager.getBorder("CheckBox.border"));
 		txtPaciente.setBounds(182, 113, 131, 39);
@@ -204,7 +210,7 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 		btnAdicionar = new JButton("Adicionar");
 		btnAdicionar.setOpaque(false);
 		btnAdicionar.setBorder(UIManager.getBorder("MenuItem.border"));
-		btnAdicionar.setFont(new Font("Gadugi", Font.PLAIN, 13));
+		btnAdicionar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnAdicionar.setForeground(Color.BLACK);
 		btnAdicionar.setBackground(Color.WHITE);
 		btnAdicionar.addActionListener(this);
@@ -216,6 +222,7 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 
 		
 		btnAceptar = new JButton("Guardar");
+		btnAceptar.setFont(new Font("Century Gothic", Font.PLAIN, 13));
 		btnAceptar.setBorder(UIManager.getBorder("ToggleButton.border"));
 		btnAceptar.addActionListener(this);
 		btnAceptar.setBounds(288, 453, 115, 39);
@@ -283,11 +290,11 @@ public class DlgRConsultas extends JDialog implements ActionListener {
 
 	void habilitarEntradas(boolean is) {
 		txtTotal.setEditable(is);
-		cboestado.setEnabled(is);
 		btnSeleccionar.setEnabled(is);
 	}
 
 	void habilitarCodigo(boolean is) {
+		cboestado.setEnabled(is);
 		txtConsulta.setEditable(is);
 		txtPaciente.setEditable(is);
 	}

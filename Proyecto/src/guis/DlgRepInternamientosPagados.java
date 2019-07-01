@@ -74,7 +74,7 @@ public class DlgRepInternamientosPagados extends JDialog {
 		
 		txtConsultasPagadas = new JTextField();
 		txtConsultasPagadas.setText("               INTERNAMIENTOS                                            PAGADAS");
-		txtConsultasPagadas.setFont(new Font("Sitka Subheading", Font.BOLD, 18));
+		txtConsultasPagadas.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		txtConsultasPagadas.setEditable(false);
 		txtConsultasPagadas.setColumns(10);
 		txtConsultasPagadas.setBackground(new Color(224, 255, 255));
